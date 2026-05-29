@@ -1,0 +1,252 @@
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import type { Measure, ResultsData, VoteCounts, VoteChoice } from '@/types'
+
+const CHOICES = [
+  { key: 'pour'        as VoteChoice, icon: '♥', label: 'Pour',        color: '#22c55e' },
+  { key: 'contre'      as VoteChoice, icon: '✕', label: 'Contre',      color: '#ef4444' },
+  { key: 'prioritaire' as VoteChoice, icon: '★', label: 'Prioritaire', color: '#6366f1' },
+  { key: 'discuter'    as VoteChoice, icon: '…', label: 'À discuter',  color: '#f59e0b' },
+  { key: 'incompris'   as VoteChoice, icon: '?', label: 'Pas clair',   color: '#94a3b8' },
+]
+
+type SortKey = VoteChoice | 'total'
+
+interface EnrichedMeasure extends Measure, VoteCounts { total: number }
+
+function enrich(measures: Measure[], votes: Record<number, VoteCounts>): EnrichedMeasure[] {
+  return measures.map((m) => {
+    const v = votes[m.id] ?? { pour: 0, contre: 0, discuter: 0, prioritaire: 0, incompris: 0 }
+    const total = v.pour + v.contre + v.discuter + v.prioritaire + v.incompris
+    return { ...m, ...v, total }
+  })
+}
+
+function pct(n: number, total: number) {
+  if (total === 0) return '0'
+  return ((n / total) * 100).toFixed(1)
+}
+
+// ── Stats card ────────────────────────────────────────────────────────────────
+
+function StatCard({ icon, label, value, percentage, color }: {
+  icon: string; label: string; value: number; percentage: string; color: string
+}) {
+  return (
+    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col gap-1">
+      <span className="text-2xl" style={{ color }}>{icon}</span>
+      <div className="flex items-baseline gap-1">
+        <span className="text-white font-bold text-xl">{value}</span>
+        <span className="text-slate-500 text-sm">{percentage}%</span>
+      </div>
+      <span className="text-slate-400 text-xs">{label}</span>
+    </div>
+  )
+}
+
+// ── Stacked bar ───────────────────────────────────────────────────────────────
+
+function StackedBar({ global }: { global: EnrichedMeasure }) {
+  if (global.total === 0) return null
+  return (
+    <div className="mb-6">
+      <div className="flex h-3 rounded-full overflow-hidden gap-px">
+        {CHOICES.map(({ key, color }) => {
+          const w = (global[key] / global.total) * 100
+          if (w < 0.5) return null
+          return <div key={key} style={{ width: `${w}%`, background: color }} title={`${key}: ${w.toFixed(1)}%`} />
+        })}
+      </div>
+      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
+        {CHOICES.map(({ key, icon, label, color }) => (
+          <span key={key} className="flex items-center gap-1 text-xs text-slate-400">
+            <span style={{ color }}>{icon}</span>{label} · {pct(global[key], global.total)}%
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ── Results table ─────────────────────────────────────────────────────────────
+
+function ResultsTable({ rows, sortBy, sortDir, onSort }: {
+  rows: EnrichedMeasure[]
+  sortBy: SortKey
+  sortDir: 'asc' | 'desc'
+  onSort: (k: SortKey) => void
+}) {
+  const allCols: Array<{ key: SortKey; label: string; color?: string }> = [
+    { key: 'total',       label: 'Total' },
+    { key: 'pour',        label: '♥',  color: '#22c55e' },
+    { key: 'contre',      label: '✕',  color: '#ef4444' },
+    { key: 'prioritaire', label: '★',  color: '#6366f1' },
+    { key: 'discuter',    label: '…',  color: '#f59e0b' },
+    { key: 'incompris',   label: '?',  color: '#94a3b8' },
+  ]
+
+  return (
+    <div className="overflow-x-auto -mx-4">
+      <table className="w-full text-sm min-w-[500px]">
+        <thead>
+          <tr className="border-b border-slate-800">
+            <th className="text-left text-slate-500 font-medium py-2 px-4">Mesure</th>
+            {allCols.map(({ key, label, color }) => (
+              <th
+                key={key}
+                onClick={() => onSort(key)}
+                className={`text-right py-2 px-2 cursor-pointer select-none font-medium transition-colors ${sortBy === key ? 'text-white' : 'text-slate-600 hover:text-slate-400'}`}
+                style={sortBy === key && color ? { color } : {}}
+              >
+                {label}{sortBy === key ? (sortDir === 'desc' ? '↓' : '↑') : ''}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((m, i) => (
+            <tr key={m.id} className="border-b border-slate-900 hover:bg-slate-900/50 transition-colors">
+              <td className="py-3 px-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-slate-600 text-xs w-5 shrink-0 text-right">{i + 1}</span>
+                  <span className="text-slate-200 text-sm leading-tight">{m.title}</span>
+                </div>
+              </td>
+              {allCols.map(({ key, color }) => (
+                <td key={key} className="text-right py-3 px-2" style={{ color: sortBy === key ? color : undefined }}>
+                  <span className={sortBy === key ? 'font-semibold text-white' : 'text-slate-500'}>
+                    {m[key]}
+                  </span>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────────────
+
+interface ResultsDashboardProps {
+  measures: Measure[]
+  results: ResultsData
+}
+
+export function ResultsDashboard({ measures, results }: ResultsDashboardProps) {
+  const [sortBy, setSortBy] = useState<SortKey>('total')
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc')
+  const [showAll, setShowAll] = useState(false)
+  const TOP_N = 10
+
+  const enriched = enrich(measures, results.votes)
+
+  const globalCounts = enriched.reduce<EnrichedMeasure>(
+    (acc, m) => ({ ...acc, pour: acc.pour + m.pour, contre: acc.contre + m.contre, discuter: acc.discuter + m.discuter, prioritaire: acc.prioritaire + m.prioritaire, incompris: acc.incompris + m.incompris, total: acc.total + m.total }),
+    { id: 0, title: '', summary: '', chapter: '', pour: 0, contre: 0, discuter: 0, prioritaire: 0, incompris: 0, total: 0 }
+  )
+
+  const sorted = [...enriched].sort((a, b) =>
+    sortDir === 'desc' ? b[sortBy] - a[sortBy] : a[sortBy] - b[sortBy]
+  )
+  const displayed = showAll ? sorted : sorted.slice(0, TOP_N)
+
+  function toggleSort(col: SortKey) {
+    if (sortBy === col) setSortDir((d) => d === 'desc' ? 'asc' : 'desc')
+    else { setSortBy(col); setSortDir('desc') }
+  }
+
+  const highlights = {
+    top:       enriched.filter((m) => m.pour > 0).sort((a, b) => b.pour - a.pour)[0],
+    priority:  enriched.filter((m) => m.prioritaire > 0).sort((a, b) => b.prioritaire - a.prioritaire)[0],
+    debated:   enriched.filter((m) => m.discuter > 0).sort((a, b) => b.discuter - a.discuter)[0],
+  }
+
+  return (
+    <div className="max-w-2xl mx-auto px-4 py-6 safe-top">
+      {/* Header */}
+      <div className="mb-6">
+        <Link href="/" className="text-slate-500 text-sm hover:text-slate-300 transition-colors block mb-2">← Accueil</Link>
+        <h1 className="text-white font-bold text-2xl">Résultats agrégés</h1>
+        <p className="text-slate-400 text-sm mt-1">{globalCounts.total} vote{globalCounts.total !== 1 ? 's' : ''} · {measures.length} mesures</p>
+      </div>
+
+      {/* Stats grid */}
+      <div className="grid grid-cols-3 gap-2 mb-6">
+        {CHOICES.slice(0, 3).map(({ key, icon, label, color }) => (
+          <StatCard key={key} icon={icon} label={label} value={globalCounts[key]} percentage={pct(globalCounts[key], globalCounts.total)} color={color} />
+        ))}
+      </div>
+      <div className="grid grid-cols-2 gap-2 mb-6">
+        {CHOICES.slice(3).map(({ key, icon, label, color }) => (
+          <StatCard key={key} icon={icon} label={label} value={globalCounts[key]} percentage={pct(globalCounts[key], globalCounts.total)} color={color} />
+        ))}
+      </div>
+
+      {/* Stacked bar */}
+      <StackedBar global={globalCounts} />
+
+      {/* Highlights */}
+      {(highlights.top || highlights.priority || highlights.debated) && (
+        <div className="space-y-2 mb-6">
+          {highlights.priority && (
+            <div className="bg-indigo-950/50 border border-indigo-800/50 rounded-2xl px-4 py-3 flex gap-3 items-start">
+              <span className="text-indigo-400 text-xl shrink-0">★</span>
+              <div><div className="text-slate-400 text-xs">Priorité n°1</div><div className="text-white text-sm font-medium">{highlights.priority.title}</div></div>
+            </div>
+          )}
+          {highlights.debated && (
+            <div className="bg-amber-950/50 border border-amber-800/50 rounded-2xl px-4 py-3 flex gap-3 items-start">
+              <span className="text-amber-400 text-xl shrink-0">…</span>
+              <div><div className="text-slate-400 text-xs">La plus débattue</div><div className="text-white text-sm font-medium">{highlights.debated.title}</div></div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Table */}
+      <div className="mb-4">
+        <div className="flex justify-between items-center mb-3">
+          <h2 className="text-white font-semibold text-sm">
+            {showAll ? `Toutes les mesures (${sorted.length})` : `Top ${Math.min(TOP_N, sorted.length)}`}
+          </h2>
+          <span className="text-slate-600 text-xs">Cliquez une colonne pour trier</span>
+        </div>
+        <ResultsTable rows={displayed} sortBy={sortBy} sortDir={sortDir} onSort={toggleSort} />
+        {!showAll && sorted.length > TOP_N && (
+          <button
+            onClick={() => setShowAll(true)}
+            className="mt-4 w-full text-slate-500 hover:text-white text-sm py-2 transition-colors"
+          >
+            Voir les {sorted.length - TOP_N} autres mesures →
+          </button>
+        )}
+        {showAll && (
+          <button onClick={() => setShowAll(false)} className="mt-4 w-full text-slate-500 hover:text-white text-sm py-2 transition-colors">
+            Réduire ↑
+          </button>
+        )}
+      </div>
+
+      {/* Integrity hash */}
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl px-4 py-4 mt-6">
+        <div className="text-slate-400 text-xs font-medium mb-1">Hash de vérification (SHA-256)</div>
+        <div className="font-mono text-xs text-slate-500 break-all">{results.hash}</div>
+        <div className="text-slate-600 text-xs mt-2">Ce hash permet de vérifier publiquement l&apos;intégrité des résultats.</div>
+      </div>
+
+      {/* Actions */}
+      <div className="flex gap-3 mt-6">
+        <Link href="/swipe" className="flex-1 bg-red-600 hover:bg-red-500 text-white font-semibold py-3 rounded-2xl text-center text-sm transition-colors">
+          Nouveau round
+        </Link>
+        <Link href="/" className="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-2xl text-center text-sm transition-colors">
+          Accueil
+        </Link>
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Programme et consultation citoyenne">
+  <rect width="900" height="1200" fill="#f7efff"/>
+  <path d="M138 190h500c48 0 86 38 86 86v642c0 48-38 86-86 86H138Z" fill="#ffffff"/>
+  <path d="M208 318h372M208 424h428M208 530h310M208 636h392M208 742h246" stroke="#cbb6e4" stroke-width="28" stroke-linecap="round"/>
+  <path d="M706 252v690" stroke="#472683" stroke-width="34" stroke-linecap="round" opacity=".18"/>
+  <circle cx="654" cy="812" r="92" fill="#e5cbff"/>
+  <path d="M611 813l33 34 66-76" fill="none" stroke="#472683" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M102 1068h662" stroke="#e5dded" stroke-width="28" stroke-linecap="round"/>
+</svg>

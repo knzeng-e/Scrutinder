@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Route vers l'horizon">
+  <rect width="900" height="1200" fill="#eef2f6"/>
+  <path d="M0 608c136-68 287-101 453-99 164 1 313 36 447 103v588H0Z" fill="#dfe6ec"/>
+  <path d="M362 512 162 1200h576L538 512Z" fill="#757f8a"/>
+  <path d="M446 554v130M450 783v155M450 1045v155" stroke="#f2f0e8" stroke-width="22" stroke-linecap="round"/>
+  <path d="M170 496h560" stroke="#b9c0c8" stroke-width="20" stroke-linecap="round"/>
+  <path d="M222 414h456" stroke="#cbd1d8" stroke-width="16" stroke-linecap="round"/>
+  <path d="M36 0h7v1200h-7z" fill="#7d8792" opacity=".11"/>
+  <path d="M857 0h7v1200h-7z" fill="#9a8c86" opacity=".11"/>
+</svg>

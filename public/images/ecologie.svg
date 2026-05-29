@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Feuilles et horizon écologique">
+  <rect width="900" height="1200" fill="#eef3ef"/>
+  <path d="M0 785c132-80 285-116 458-109 155 6 302 47 442 123v401H0Z" fill="#dfe8e1"/>
+  <path d="M449 834V486" stroke="#7d8d80" stroke-width="26" stroke-linecap="round"/>
+  <path d="M449 545c-112-142-232-147-361-16 139 80 259 85 361 16Z" fill="#b6c9b7"/>
+  <path d="M449 644c124-170 256-183 397-40-151 99-284 112-397 40Z" fill="#9fb69f"/>
+  <path d="M450 744c-86-100-177-104-273-14 102 63 193 67 273 14Z" fill="#c8d6c9"/>
+  <circle cx="706" cy="216" r="78" fill="#f1ede2"/>
+  <path d="M38 0h7v1200h-7z" fill="#7d8792" opacity=".12"/>
+  <path d="M855 0h7v1200h-7z" fill="#9a8c86" opacity=".1"/>
+</svg>

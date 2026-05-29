@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Banc public au soleil">
+  <rect width="900" height="1200" fill="#eef1f5"/>
+  <circle cx="706" cy="210" r="96" fill="#f6efe8"/>
+  <path d="M0 826c154-62 316-88 485-78 138 8 278 42 415 102v350H0Z" fill="#e4e9ef"/>
+  <path d="M141 675h555" stroke="#6e7480" stroke-width="38" stroke-linecap="round"/>
+  <path d="M184 596h470" stroke="#8c929d" stroke-width="28" stroke-linecap="round"/>
+  <path d="M214 702v174M621 702v174" stroke="#6e7480" stroke-width="30" stroke-linecap="round"/>
+  <path d="M168 910h530" stroke="#b8bec7" stroke-width="18" stroke-linecap="round"/>
+  <path d="M94 1080h712" stroke="#d0d5dd" stroke-width="26" stroke-linecap="round"/>
+  <path d="M40 0h6v1200h-6z" fill="#7d8792" opacity=".11"/>
+  <path d="M854 0h6v1200h-6z" fill="#9a8c86" opacity=".12"/>
+</svg>

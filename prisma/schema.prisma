@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Vote {
+  id            String   @id @default(cuid())
+  measureId     Int
+  choice        String   // pour | contre | discuter | prioritaire | incompris
+  voterId       String?
+  encryptedVote Json?
+  createdAt     DateTime @default(now())
+
+  @@index([measureId])
+  @@index([voterId])
+  @@index([measureId, choice])
+}
+
+model WebAuthnCredential {
+  id           String    @id @default(cuid())
+  credentialId String    @unique
+  userId       String
+  publicKey    String    // base64url encoded CBOR public key
+  counter      BigInt    @default(0)
+  deviceType   String    // singleDevice | multiDevice
+  backedUp     Boolean   @default(false)
+  transports   String[]  // usb | nfc | ble | internal | hybrid | cable
+  createdAt    DateTime  @default(now())
+  lastUsedAt   DateTime?
+
+  @@index([userId])
+}
+
+// Short-lived challenge store (60s TTL). Cleaned up on each new request.
+model WebAuthnChallenge {
+  id        String   @id @default(cuid())
+  challenge String   @unique
+  userId    String?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}

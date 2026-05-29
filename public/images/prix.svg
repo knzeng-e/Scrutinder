@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Panier de produits essentiels">
+  <rect width="900" height="1200" fill="#f3f2ef"/>
+  <path d="M177 477h546l-68 352H245Z" fill="#dfe4ea"/>
+  <path d="M236 477c23-118 94-178 214-178s191 60 214 178" fill="none" stroke="#808894" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="350" cy="637" r="54" fill="#d9b8b9"/>
+  <rect x="438" y="558" width="94" height="156" rx="22" fill="#cdd8d0"/>
+  <path d="M574 684c62-26 96-11 104 47-58 23-92 8-104-47Z" fill="#aebd9f"/>
+  <path d="M272 861h360" stroke="#9da5ae" stroke-width="18" stroke-linecap="round"/>
+  <path d="M0 250c168 20 303 10 405-30s267-44 495-12v-208H0Z" fill="#e9edf3"/>
+  <path d="M38 0h8v1200h-8z" fill="#7d8792" opacity=".1"/>
+  <path d="M854 0h8v1200h-8z" fill="#9a8c86" opacity=".11"/>
+</svg>

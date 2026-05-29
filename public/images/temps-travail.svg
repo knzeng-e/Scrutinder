@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Horloge et bureau">
+  <rect width="900" height="1200" fill="#eff1f4"/>
+  <circle cx="450" cy="455" r="178" fill="#ffffff"/>
+  <circle cx="450" cy="455" r="142" fill="none" stroke="#c4cad3" stroke-width="20"/>
+  <path d="M450 455V352M450 455l86 54" stroke="#737c88" stroke-width="24" stroke-linecap="round"/>
+  <path d="M184 798h532" stroke="#89929d" stroke-width="34" stroke-linecap="round"/>
+  <path d="M248 834v154M652 834v154" stroke="#89929d" stroke-width="28" stroke-linecap="round"/>
+  <rect x="290" y="700" width="320" height="78" rx="18" fill="#d9dee5"/>
+  <path d="M36 0h7v1200h-7z" fill="#7d8792" opacity=".1"/>
+  <path d="M858 0h7v1200h-7z" fill="#9a8c86" opacity=".1"/>
+</svg>

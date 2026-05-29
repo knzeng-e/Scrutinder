@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Fiche de paie et flèche de hausse">
+  <rect width="900" height="1200" fill="#f2f3f5"/>
+  <rect x="205" y="246" width="490" height="650" rx="38" fill="#ffffff"/>
+  <path d="M284 370h254M284 462h332M284 554h226M284 646h300" stroke="#b5bcc5" stroke-width="24" stroke-linecap="round"/>
+  <path d="M287 780h238" stroke="#7f8792" stroke-width="30" stroke-linecap="round"/>
+  <path d="M564 777 673 668l50 50" fill="none" stroke="#87998b" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M673 668h-78" stroke="#87998b" stroke-width="32" stroke-linecap="round"/>
+  <path d="M196 948h508" stroke="#d2d7de" stroke-width="24" stroke-linecap="round"/>
+  <path d="M40 0h7v1200h-7z" fill="#7d8792" opacity=".1"/>
+  <path d="M854 0h7v1200h-7z" fill="#9a8c86" opacity=".11"/>
+</svg>
