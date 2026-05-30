@@ -1,31 +1,31 @@
 # CLAUDE.md — Scrutinder
 
-> Swipe political measures. Measure popular support. WebAuthn + Next.js 15 + Neon PostgreSQL.
-> **Read [BACKLOG.md](BACKLOG.md) for task state. Read [AGENTS.md](AGENTS.md) for agent roles.**
+> Swipez les mesures politiques. Mesurez l'adhésion populaire. WebAuthn + Next.js 15 + Neon PostgreSQL.
+> **Lisez [BACKLOG.md](BACKLOG.md) pour l'état des tâches. Lisez [AGENTS.md](AGENTS.md) pour les rôles des agents.**
 
-## App overview
+## Vue d'ensemble de l'application
 
-Scrutinder is a Tinder-inspired civic app that lets users swipe the measures of the _L'Avenir en Commun_ political programme (LFI / Mélenchon 2027). Votes are encrypted locally (AES-GCM), aggregate counts persist in PostgreSQL, and a SHA-256 hash enables public integrity verification.
+Scrutinder est une application civique inspirée de Tinder qui permet aux utilisateurs de swiper les mesures du programme politique _L'Avenir en Commun_ (LFI / Mélenchon 2027). Les votes sont chiffrés localement (AES-GCM), les comptages agrégés persistent dans PostgreSQL, et un hash SHA-256 permet la vérification publique de l'intégrité.
 
-**Migrated from:** `../swipe_app` (Vite/React/plain Node.js prototype → preserved for reference)
+**Migré depuis :** `../swipe_app` (prototype Vite/React/Node.js simple → conservé pour référence)
 
-## Commands
+## Commandes
 
 ```bash
-# Development (requires DATABASE_URL in .env.local)
-npm run dev            # Next.js dev server → http://localhost:3000
-npm run build          # Production build
-npm start              # Production server
+# Développement (nécessite DATABASE_URL dans .env.local)
+npm run dev            # Serveur de développement Next.js → http://localhost:3000
+npm run build          # Build de production
+npm start              # Serveur de production
 
-# Database
-npm run db:push        # Push schema to Neon (no migration file created)
-npm run db:generate    # Regenerate Prisma client after schema changes
-npm run db:studio      # Open Prisma Studio (visual DB browser)
-npm run db:migrate     # Create + apply a named migration (use in prod)
+# Base de données
+npm run db:push        # Pousser le schéma vers Neon (sans fichier de migration)
+npm run db:generate    # Regénérer le client Prisma après des changements de schéma
+npm run db:studio      # Ouvrir Prisma Studio (navigateur visuel de DB)
+npm run db:migrate     # Créer + appliquer une migration nommée (à utiliser en prod)
 
-# First-time setup
+# Configuration initiale
 cp .env.example .env.local
-# Fill in DATABASE_URL, WEBAUTHN_RP_ID, WEBAUTHN_ORIGIN
+# Remplir DATABASE_URL, WEBAUTHN_RP_ID, WEBAUTHN_ORIGIN
 npm install
 npm run db:generate
 npm run db:push
@@ -34,61 +34,61 @@ npm run dev
 
 ## Architecture
 
-| Layer | Choice |
+| Couche | Choix |
 |---|---|
 | Framework | Next.js 15 App Router + TypeScript |
-| Styling | Tailwind CSS + shadcn/ui (Phase 2) |
-| Animations | Framer Motion (swipe physics) |
+| Style | Tailwind CSS + shadcn/ui (Phase 2) |
+| Animations | Framer Motion (physique de swipe) |
 | Auth | WebAuthn passkeys via @simplewebauthn/server + @simplewebauthn/browser |
-| DB | Prisma + PostgreSQL (Neon in production) |
-| Deploy | Vercel + Neon (Phase 4) |
+| DB | Prisma + PostgreSQL (Neon en production) |
+| Déploiement | Vercel + Neon (Phase 4) |
 
-### Route map
+### Carte des routes
 
 ```
-/                       home: onboarding if new user, dashboard if authenticated
-/swipe                  swipe deck (requires auth)
-/programme              program reader — 18 chapters (requires auth)
-/resultats              live vote results (public)
+/                       accueil : onboarding si nouvel utilisateur, tableau de bord si authentifié
+/swipe                  deck de swipe (authentification requise)
+/programme              lecteur de programme — 18 chapitres (authentification requise)
+/resultats              résultats des votes en direct (public)
 
-/api/measures           GET  → measures.json array
-/api/program            GET  → program.json array
-/api/vote               POST → record a vote (Zod validated)
-/api/vote/undo          POST → delete most recent matching vote
+/api/measures           GET  → tableau measures.json
+/api/program            GET  → tableau program.json
+/api/vote               POST → enregistre un vote (validé par Zod)
+/api/vote/undo          POST → supprime le vote correspondant le plus récent
 /api/results            GET  → { votes: Record<id, counts>, hash: string }
 
-/api/auth/register/generate-options   POST → WebAuthn registration options
-/api/auth/register/verify             POST → verify + store credential
-/api/auth/authenticate/generate-options POST → WebAuthn auth options
-/api/auth/authenticate/verify           POST → verify + return success
+/api/auth/register/generate-options   POST → options d'enregistrement WebAuthn
+/api/auth/register/verify             POST → vérifier + stocker le credential
+/api/auth/authenticate/generate-options POST → options d'authentification WebAuthn
+/api/auth/authenticate/verify           POST → vérifier + retourner le succès
 ```
 
-### Auth state machine
+### Machine à états d'authentification
 
 ```
-loading → onboarding → [passkey created] → ready
-        → locked     → [passkey verified] → ready
+loading → onboarding → [passkey créé]   → ready
+        → locked     → [passkey vérifié] → ready
 ```
 
-`IdentityContext` (`context/IdentityContext.tsx`) owns this state. All protected pages redirect to `/` when `status !== 'ready'`.
+`IdentityContext` (`context/IdentityContext.tsx`) gère cet état. Toutes les pages protégées redirigent vers `/` quand `status !== 'ready'`.
 
-### Vote choices
+### Choix de vote
 
-| choice | swipe direction | button |
+| choice | direction du swipe | bouton |
 |---|---|---|
-| `pour` | right | ♥ |
-| `contre` | left | ✕ |
-| `prioritaire` | up | ★ |
-| `discuter` | down | … |
+| `pour` | droite | ♥ |
+| `contre` | gauche | ✕ |
+| `prioritaire` | haut | ★ |
+| `discuter` | bas | … |
 | `incompris` | — | ? |
 
-### Local identity model
+### Modèle d'identité locale
 
 ```typescript
 {
-  id: string          // "sc_<hex32>" — stable, derived from seed hash
+  id: string          // "sc_<hex32>" — stable, dérivé du hash de la graine
   pseudonym: string
-  seed: string        // base64, 32 random bytes — NEVER leaves the browser
+  seed: string        // base64, 32 octets aléatoires — ne quitte JAMAIS le navigateur
   createdAt: string
   passkey?: {
     credentialId: string
@@ -99,57 +99,59 @@ loading → onboarding → [passkey created] → ready
 }
 ```
 
-The `seed` is the root of local AES-GCM encryption. WebAuthn passkeys gate access only — they do not replace the seed.
+La `seed` est la racine du chiffrement AES-GCM local. Les passkeys WebAuthn servent uniquement à contrôler l'accès — ils ne remplacent pas la graine.
 
-### DB schema (see `prisma/schema.prisma`)
+### Schéma DB (voir `prisma/schema.prisma`)
 
-| Table | Purpose |
+| Table | Rôle |
 |---|---|
-| `Vote` | One row per vote cast: measureId, choice, voterId?, encryptedVote? |
-| `WebAuthnCredential` | Stored passkey public keys |
-| `WebAuthnChallenge` | Short-lived (60s) registration/auth challenges |
+| `Vote` | Une ligne par vote : measureId, choice, voterId?, encryptedVote? |
+| `WebAuthnCredential` | Clés publiques de passkeys stockées |
+| `WebAuthnChallenge` | Challenges d'enregistrement/authentification de courte durée (60s) |
 
-## Key invariants — ALL agents must respect
+## Invariants clés — TOUS les agents doivent les respecter
 
-1. **Seed never leaves the browser** — never serialize or send `identity.seed` to any API
-2. **Stable measure IDs** — integer `id` values in `data/measures.json` are FK references in `Vote` table; never renumber
-3. **Zod validation** on every POST route before touching the DB
-4. **Prisma singleton** — always import from `lib/db.ts`; never `new PrismaClient()` in route handlers
-5. **`'use client'` on interactive components** — server components only for static data or DB reads
-6. **WebAuthn requires HTTPS or localhost** — dev on `http://localhost:3000` is fine
+1. **La graine ne quitte jamais le navigateur** — ne jamais sérialiser ni envoyer `identity.seed` à une API
+2. **IDs de mesures stables** — les valeurs `id` entières dans `data/measures.json` sont des références FK dans la table `Vote` ; ne jamais renuméroter
+3. **Validation Zod** sur chaque route POST avant toute interaction avec la DB
+4. **Singleton Prisma** — toujours importer depuis `lib/db.ts` ; jamais `new PrismaClient()` dans les gestionnaires de routes
+5. **`'use client'` sur les composants interactifs** — les composants serveur uniquement pour les données statiques ou les lectures DB
+6. **WebAuthn nécessite HTTPS ou localhost** — le développement sur `http://localhost:3000` est acceptable
 
-## Environment variables
-
-```bash
-DATABASE_URL=            # Neon PostgreSQL connection string
-WEBAUTHN_RP_ID=          # "localhost" in dev, your domain in prod (e.g. scrutinder.fr)
-WEBAUTHN_ORIGIN=         # "http://localhost:3000" in dev, "https://scrutinder.fr" in prod
-NEXT_PUBLIC_BASE_URL=    # Optional — base URL for absolute links
-```
-
-## Dependency discipline
-
-**All runtime deps are pinned to exact versions** (no `^` / `~` in `dependencies`). `@types/*` devDeps use `^` since they are type-only.
-
-When adding a new package:
-1. `npm install <pkg>` — installs the latest
-2. Read the actual installed type definitions before writing any code against it: `cat node_modules/<pkg>/dist/**/*.d.ts | grep "function <name>"` or `ls node_modules/<pkg>/`
-3. Pin the exact version in `package.json`: replace `^x.y.z` with `x.y.z`
-4. Commit `package-lock.json` with the change
-
-When upgrading a package:
-1. Read the changelog / release notes for breaking changes first
-2. Check new type signatures in `node_modules` after install
-3. Run `npm run typecheck` — fix all errors before committing
-
-## Typecheck
+## Variables d'environnement
 
 ```bash
-npm run typecheck   # tsc --noEmit — run this before every commit
+DATABASE_URL=            # Chaîne de connexion Neon PostgreSQL
+WEBAUTHN_RP_ID=          # "localhost" en dev, votre domaine en prod (ex. scrutinder.fr)
+WEBAUTHN_ORIGIN=         # "http://localhost:3000" en dev, "https://scrutinder.fr" en prod
+NEXT_PUBLIC_BASE_URL=    # Optionnel — URL de base pour les liens absolus
 ```
 
-Zero errors is the bar. CI will enforce this in Phase 4.
+## Discipline sur les dépendances
 
-## No test runner configured (Phase 1)
+**Toutes les dépendances de production sont épinglées à des versions exactes** (pas de `^` / `~` dans `dependencies`). Les `@types/*` devDeps utilisent `^` car ils ne concernent que les types.
 
-Manual validation checklist is in BACKLOG.md Phase 1 → Validation section.
+Lors de l'ajout d'un nouveau package :
+
+1. `npm install <pkg>` — installe la dernière version
+2. Lire les définitions de types installées avant d'écrire du code : `cat node_modules/<pkg>/dist/**/*.d.ts | grep "function <name>"` ou `ls node_modules/<pkg>/`
+3. Épingler la version exacte dans `package.json` : remplacer `^x.y.z` par `x.y.z`
+4. Committer `package-lock.json` avec le changement
+
+Lors de la mise à jour d'un package :
+
+1. Lire les notes de version pour les changements incompatibles
+2. Vérifier les nouvelles signatures de types dans `node_modules` après installation
+3. Exécuter `npm run typecheck` — corriger toutes les erreurs avant de committer
+
+## Vérification des types
+
+```bash
+npm run typecheck   # tsc --noEmit — à exécuter avant chaque commit
+```
+
+Zéro erreur est la norme. La CI le vérifiera en Phase 4.
+
+## Pas de test runner configuré (Phase 1)
+
+La liste de vérification manuelle se trouve dans BACKLOG.md Phase 1 → section Validation.

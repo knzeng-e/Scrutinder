@@ -6,14 +6,38 @@
     "url": "https://melenchon2027.fr/programme2025/livre/introduction/",
     "summary": "831 mesures issues de 15 000 contributions citoyennes pour transformer la France en profondeur.",
     "content": [
-      { "type": "h2", "text": "Un programme issu du peuple" },
-      { "type": "p", "text": "Ce programme rassemble 831 mesures sélectionnées parmi des milliers de contributions individuelles et des audits thématiques d'acteurs organisés de la société civile. Il est le résultat de deux décennies de construction collective, enrichi à chaque élection et chaque mobilisation." },
-      { "type": "h2", "text": "La France transformée" },
-      { "type": "p", "text": "La France de 2025 n'est plus celle de 1958. Une femme sur deux travaille, contre une sur cinq à l'époque. Un Français sur quatre a au moins un grand-parent né à l'étranger. Quatre-vingt pour cent de la population vit en ville. Ces transformations profondes appellent un programme à la hauteur." },
-      { "type": "h2", "text": "La règle verte" },
-      { "type": "p", "text": "Le programme se fonde sur la règle verte : ne jamais prendre à la nature plus qu'elle ne peut reconstituer. Ce principe traverse chaque proposition, de l'économie à la diplomatie, de l'école à la santé." },
-      { "type": "h2", "text": "La VIe République" },
-      { "type": "p", "text": "Les institutions de la Ve République sont épuisées. Un régime présidentiel hyperpersonnalisé ne peut plus répondre aux défis collectifs de notre temps. La VIe République instaurera une démocratie réellement participative, avec une assemblée constituante élue au suffrage universel direct." }
+      {
+        "type": "h2",
+        "text": "Un programme issu du peuple"
+      },
+      {
+        "type": "p",
+        "text": "Ce programme rassemble 831 mesures sélectionnées parmi des milliers de contributions individuelles et des audits thématiques d'acteurs organisés de la société civile. Il est le résultat de deux décennies de construction collective, enrichi à chaque élection et chaque mobilisation."
+      },
+      {
+        "type": "h2",
+        "text": "La France transformée"
+      },
+      {
+        "type": "p",
+        "text": "La France de 2025 n'est plus celle de 1958. Une femme sur deux travaille, contre une sur cinq à l'époque. Un Français sur quatre a au moins un grand-parent né à l'étranger. Quatre-vingt pour cent de la population vit en ville. Ces transformations profondes appellent un programme à la hauteur."
+      },
+      {
+        "type": "h2",
+        "text": "La règle verte"
+      },
+      {
+        "type": "p",
+        "text": "Le programme se fonde sur la règle verte : ne jamais prendre à la nature plus qu'elle ne peut reconstituer. Ce principe traverse chaque proposition, de l'économie à la diplomatie, de l'école à la santé."
+      },
+      {
+        "type": "h2",
+        "text": "La VIe République"
+      },
+      {
+        "type": "p",
+        "text": "Les institutions de la Ve République sont épuisées. Un régime présidentiel hyperpersonnalisé ne peut plus répondre aux défis collectifs de notre temps. La VIe République instaurera une démocratie réellement participative, avec une assemblée constituante élue au suffrage universel direct."
+      }
     ]
   },
   {
@@ -23,12 +47,30 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre1/",
     "summary": "Passer à la VIe République, démanteler la monarchie présidentielle et instaurer une démocratie directe et participative.",
     "content": [
-      { "type": "h2", "text": "Une assemblée constituante" },
-      { "type": "p", "text": "L'élection d'une assemblée constituante permettra à la nation de se doter d'une nouvelle Constitution. Cette assemblée sera élue au suffrage universel direct, paritaire, avec des représentants de la société civile. Elle rédigera la Constitution de la VIe République soumise à référendum." },
-      { "type": "h2", "text": "Démocratiser le pouvoir" },
-      { "type": "p", "text": "Le référendum d'initiative citoyenne (RIC) permettra à un million de citoyens de proposer une loi, d'abroger une loi existante ou de révoquer un élu. Le droit de vote sera accordé dès 16 ans. Le vote blanc sera comptabilisé." },
-      { "type": "h2", "text": "Laïcité et libertés" },
-      { "type": "p", "text": "La loi de 1905 de séparation des Églises et de l'État sera constitutionnalisée. Les libertés fondamentales — de conscience, d'expression, de réunion — seront renforcées et protégées contre toute atteinte sécuritaire." }
+      {
+        "type": "h2",
+        "text": "Une assemblée constituante"
+      },
+      {
+        "type": "p",
+        "text": "L'élection d'une assemblée constituante permettra à la nation de se doter d'une nouvelle Constitution. Cette assemblée sera élue au suffrage universel direct, paritaire, avec des représentants de la société civile. Elle rédigera la Constitution de la VIe République soumise à référendum."
+      },
+      {
+        "type": "h2",
+        "text": "Démocratiser le pouvoir"
+      },
+      {
+        "type": "p",
+        "text": "Le référendum d'initiative citoyenne (RIC) permettra à un million de citoyens de proposer une loi, d'abroger une loi existante ou de révoquer un élu. Le droit de vote sera accordé dès 16 ans. Le vote blanc sera comptabilisé."
+      },
+      {
+        "type": "h2",
+        "text": "Laïcité et libertés"
+      },
+      {
+        "type": "p",
+        "text": "La loi de 1905 de séparation des Églises et de l'État sera constitutionnalisée. Les libertés fondamentales — de conscience, d'expression, de réunion — seront renforcées et protégées contre toute atteinte sécuritaire."
+      }
     ]
   },
   {
@@ -38,12 +80,30 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre2/",
     "summary": "Collectiviser les biens communs fondamentaux et mettre fin au pillage économique de la nation.",
     "content": [
-      { "type": "h2", "text": "Les biens communs" },
-      { "type": "p", "text": "L'eau, l'air, la biodiversité, les forêts et les semences sont des biens communs qui appartiennent à tous. Leur gestion sera soustraite aux logiques de marché et confiée à des structures publiques et coopératives." },
-      { "type": "h2", "text": "Un pôle public de l'énergie" },
-      { "type": "p", "text": "EDF sera renationalisée à 100 %. La production, le transport et la distribution d'énergie seront réunifiés dans un service public de l'énergie garant de l'accès pour tous à un tarif maîtrisé." },
-      { "type": "h2", "text": "Fin des rentes indues" },
-      { "type": "p", "text": "Les concessions autoroutières seront rachetées à l'expiration des contrats sans compensation abusive. Les rachats à prix d'or et les dividendes excessifs dans les secteurs stratégiques seront encadrés par la loi." }
+      {
+        "type": "h2",
+        "text": "Les biens communs"
+      },
+      {
+        "type": "p",
+        "text": "L'eau, l'air, la biodiversité, les forêts et les semences sont des biens communs qui appartiennent à tous. Leur gestion sera soustraite aux logiques de marché et confiée à des structures publiques et coopératives."
+      },
+      {
+        "type": "h2",
+        "text": "Un pôle public de l'énergie"
+      },
+      {
+        "type": "p",
+        "text": "EDF sera renationalisée à 100 %. La production, le transport et la distribution d'énergie seront réunifiés dans un service public de l'énergie garant de l'accès pour tous à un tarif maîtrisé."
+      },
+      {
+        "type": "h2",
+        "text": "Fin des rentes indues"
+      },
+      {
+        "type": "p",
+        "text": "Les concessions autoroutières seront rachetées à l'expiration des contrats sans compensation abusive. Les rachats à prix d'or et les dividendes excessifs dans les secteurs stratégiques seront encadrés par la loi."
+      }
     ]
   },
   {
@@ -53,10 +113,22 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre3/",
     "summary": "Faire des travailleurs des acteurs à part entière de la gouvernance des entreprises et renforcer les communes.",
     "content": [
-      { "type": "h2", "text": "Droits des travailleurs" },
-      { "type": "p", "text": "Les représentants des salariés disposeront d'un droit de veto sur les décisions affectant l'emploi et les conditions de travail. Dans les entreprises de plus de 50 salariés, un tiers des sièges au conseil d'administration seront réservés aux représentants des travailleurs." },
-      { "type": "h2", "text": "Renforcer les communes" },
-      { "type": "p", "text": "La commune est la cellule de base de la démocratie. Les dotations de l'État seront augmentées. Les maires auront un droit de regard sur les implantations commerciales et industrielles dans leur territoire." }
+      {
+        "type": "h2",
+        "text": "Droits des travailleurs"
+      },
+      {
+        "type": "p",
+        "text": "Les représentants des salariés disposeront d'un droit de veto sur les décisions affectant l'emploi et les conditions de travail. Dans les entreprises de plus de 50 salariés, un tiers des sièges au conseil d'administration seront réservés aux représentants des travailleurs."
+      },
+      {
+        "type": "h2",
+        "text": "Renforcer les communes"
+      },
+      {
+        "type": "p",
+        "text": "La commune est la cellule de base de la démocratie. Les dotations de l'État seront augmentées. Les maires auront un droit de regard sur les implantations commerciales et industrielles dans leur territoire."
+      }
     ]
   },
   {
@@ -66,12 +138,30 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre4/",
     "summary": "Élargir les droits civiques, protéger les libertés numériques et garantir l'égalité réelle entre les personnes.",
     "content": [
-      { "type": "h2", "text": "Droits numériques" },
-      { "type": "p", "text": "La surveillance de masse sera interdite. Les algorithmes de notation sociale seront prohibés. Les données personnelles collectées par les plateformes seront soumises à un droit de propriété individuelle opposable." },
-      { "type": "h2", "text": "Égalité réelle" },
-      { "type": "p", "text": "L'égalité entre les femmes et les hommes sera inscrite dans la Constitution comme objectif à valeur constitutionnelle. Les inégalités de salaire à poste égal seront passibles de sanctions pénales immédiates." },
-      { "type": "h2", "text": "Justice et police" },
-      { "type": "p", "text": "Le contrôle au faciès sera interdit et sanctionné. Une police de proximité sera reconstruite dans chaque quartier. L'indépendance de la justice sera garantie par la réforme du Conseil supérieur de la magistrature." }
+      {
+        "type": "h2",
+        "text": "Droits numériques"
+      },
+      {
+        "type": "p",
+        "text": "La surveillance de masse sera interdite. Les algorithmes de notation sociale seront prohibés. Les données personnelles collectées par les plateformes seront soumises à un droit de propriété individuelle opposable."
+      },
+      {
+        "type": "h2",
+        "text": "Égalité réelle"
+      },
+      {
+        "type": "p",
+        "text": "L'égalité entre les femmes et les hommes sera inscrite dans la Constitution comme objectif à valeur constitutionnelle. Les inégalités de salaire à poste égal seront passibles de sanctions pénales immédiates."
+      },
+      {
+        "type": "h2",
+        "text": "Justice et police"
+      },
+      {
+        "type": "p",
+        "text": "Le contrôle au faciès sera interdit et sanctionné. Une police de proximité sera reconstruite dans chaque quartier. L'indépendance de la justice sera garantie par la réforme du Conseil supérieur de la magistrature."
+      }
     ]
   },
   {
@@ -81,12 +171,30 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre5/",
     "summary": "Investir massivement dans l'éducation publique, recruter 65 000 enseignants et garantir la gratuité de l'école à l'université.",
     "content": [
-      { "type": "h2", "text": "Une école émancipatrice" },
-      { "type": "p", "text": "L'école de la République doit transmettre les savoirs fondamentaux et former des citoyens critiques. 65 000 enseignants supplémentaires seront recrutés pour réduire les effectifs par classe. Les rythmes scolaires seront réformés." },
-      { "type": "h2", "text": "Gratuité réelle" },
-      { "type": "p", "text": "L'entrée à l'université sera gratuite et les frais d'inscription abolis. Une allocation d'autonomie universelle pour les étudiants remplacera le système actuel de bourses insuffisantes." },
-      { "type": "h2", "text": "Formation tout au long de la vie" },
-      { "type": "p", "text": "Un droit universel à la formation continue sera garanti. Chaque travailleur disposera d'un compte formation crédité annuellement, mobilisable sans justification pour se reconvertir ou se perfectionner." }
+      {
+        "type": "h2",
+        "text": "Une école émancipatrice"
+      },
+      {
+        "type": "p",
+        "text": "L'école de la République doit transmettre les savoirs fondamentaux et former des citoyens critiques. 65 000 enseignants supplémentaires seront recrutés pour réduire les effectifs par classe. Les rythmes scolaires seront réformés."
+      },
+      {
+        "type": "h2",
+        "text": "Gratuité réelle"
+      },
+      {
+        "type": "p",
+        "text": "L'entrée à l'université sera gratuite et les frais d'inscription abolis. Une allocation d'autonomie universelle pour les étudiants remplacera le système actuel de bourses insuffisantes."
+      },
+      {
+        "type": "h2",
+        "text": "Formation tout au long de la vie"
+      },
+      {
+        "type": "p",
+        "text": "Un droit universel à la formation continue sera garanti. Chaque travailleur disposera d'un compte formation crédité annuellement, mobilisable sans justification pour se reconvertir ou se perfectionner."
+      }
     ]
   },
   {
@@ -96,12 +204,30 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre6/",
     "summary": "Rétablir la progressivité de l'impôt, taxer les super-profits et mettre fin aux paradis fiscaux.",
     "content": [
-      { "type": "h2", "text": "Impôt progressif" },
-      { "type": "p", "text": "La flat tax sur les revenus du capital sera supprimée. L'impôt sur le revenu sera rendu plus progressif avec 14 tranches, de 0 % pour les bas revenus à 90 % au-delà de 400 000 euros par an." },
-      { "type": "h2", "text": "Taxe sur les super-profits" },
-      { "type": "p", "text": "Une taxe exceptionnelle sur les profits réalisés au-delà de la moyenne des cinq dernières années sera instaurée. Les bénéfices réinvestis dans l'emploi et la transition écologique seront exonérés." },
-      { "type": "h2", "text": "Héritage limité" },
-      { "type": "p", "text": "Un héritage maximum de 12 millions d'euros par personne sera institué. Au-delà, l'État récupérera la différence pour financer les services publics. La transmission anticipée aux enfants sera facilitée jusqu'à 100 000 euros." }
+      {
+        "type": "h2",
+        "text": "Impôt progressif"
+      },
+      {
+        "type": "p",
+        "text": "La flat tax sur les revenus du capital sera supprimée. L'impôt sur le revenu sera rendu plus progressif avec 14 tranches, de 0 % pour les bas revenus à 90 % au-delà de 400 000 euros par an."
+      },
+      {
+        "type": "h2",
+        "text": "Taxe sur les super-profits"
+      },
+      {
+        "type": "p",
+        "text": "Une taxe exceptionnelle sur les profits réalisés au-delà de la moyenne des cinq dernières années sera instaurée. Les bénéfices réinvestis dans l'emploi et la transition écologique seront exonérés."
+      },
+      {
+        "type": "h2",
+        "text": "Héritage limité"
+      },
+      {
+        "type": "p",
+        "text": "Un héritage maximum de 12 millions d'euros par personne sera institué. Au-delà, l'État récupérera la différence pour financer les services publics. La transmission anticipée aux enfants sera facilitée jusqu'à 100 000 euros."
+      }
     ]
   },
   {
@@ -111,10 +237,22 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre7/",
     "summary": "Refonder la protection sociale sur la solidarité, reverser 10 % de la masse salariale aux mutuelles et syndicats.",
     "content": [
-      { "type": "h2", "text": "Sécurité sociale universelle" },
-      { "type": "p", "text": "La Sécurité sociale sera étendue à tous les résidents, indépendamment de leur statut professionnel. Les soins dentaires, ophtalmologiques et auditifs seront remboursés à 100 %." },
-      { "type": "h2", "text": "Aides sociales" },
-      { "type": "p", "text": "Le RSA sera refondu en un revenu de base universel accessible à partir de 18 ans. La prestation sera automatiquement versée sans démarche pour ceux qui y ont droit, en utilisant les données fiscales." }
+      {
+        "type": "h2",
+        "text": "Sécurité sociale universelle"
+      },
+      {
+        "type": "p",
+        "text": "La Sécurité sociale sera étendue à tous les résidents, indépendamment de leur statut professionnel. Les soins dentaires, ophtalmologiques et auditifs seront remboursés à 100 %."
+      },
+      {
+        "type": "h2",
+        "text": "Aides sociales"
+      },
+      {
+        "type": "p",
+        "text": "Le RSA sera refondu en un revenu de base universel accessible à partir de 18 ans. La prestation sera automatiquement versée sans démarche pour ceux qui y ont droit, en utilisant les données fiscales."
+      }
     ]
   },
   {
@@ -124,12 +262,30 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/",
     "summary": "32 heures par semaine, retraite à 60 ans, SMIC à 1 600 euros nets, encadrement des licenciements.",
     "content": [
-      { "type": "h2", "text": "Réduction du temps de travail" },
-      { "type": "p", "text": "La durée légale du travail sera réduite à 32 heures hebdomadaires sans perte de salaire pour les travailleurs. Cette mesure créera des emplois et améliorera la qualité de vie. La mise en œuvre sera négociée branche par branche." },
-      { "type": "h2", "text": "Retraite à 60 ans" },
-      { "type": "p", "text": "La réforme des retraites portant l'âge légal à 64 ans sera abrogée dès la première semaine. L'âge de départ à 60 ans à taux plein sera restauré après 40 annuités, avec des dispositifs pour carrières longues et pénibles." },
-      { "type": "h2", "text": "SMIC et salaires" },
-      { "type": "p", "text": "Le SMIC sera immédiatement porté à 1 600 euros nets mensuels. Les grilles salariales dans la fonction publique et le privé seront revalorisées en conférence sociale. L'égalité de salaire femme-homme sera rendue opposable." }
+      {
+        "type": "h2",
+        "text": "Réduction du temps de travail"
+      },
+      {
+        "type": "p",
+        "text": "La durée légale du travail sera réduite à 32 heures hebdomadaires sans perte de salaire pour les travailleurs. Cette mesure créera des emplois et améliorera la qualité de vie. La mise en œuvre sera négociée branche par branche."
+      },
+      {
+        "type": "h2",
+        "text": "Retraite à 60 ans"
+      },
+      {
+        "type": "p",
+        "text": "La réforme des retraites portant l'âge légal à 64 ans sera abrogée dès la première semaine. L'âge de départ à 60 ans à taux plein sera restauré après 40 annuités, avec des dispositifs pour carrières longues et pénibles."
+      },
+      {
+        "type": "h2",
+        "text": "SMIC et salaires"
+      },
+      {
+        "type": "p",
+        "text": "Le SMIC sera immédiatement porté à 1 600 euros nets mensuels. Les grilles salariales dans la fonction publique et le privé seront revalorisées en conférence sociale. L'égalité de salaire femme-homme sera rendue opposable."
+      }
     ]
   },
   {
@@ -139,10 +295,22 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre9/",
     "summary": "Relocaliser les productions stratégiques, bloquer les prix du quotidien et construire une industrie écologique.",
     "content": [
-      { "type": "h2", "text": "Blocage des prix" },
-      { "type": "p", "text": "Les prix de l'alimentation de base, de l'énergie et du carburant seront bloqués en état d'urgence sociale. La réduflation — réduire les quantités sans baisser les prix — sera interdite et sanctionnée." },
-      { "type": "h2", "text": "Relocalisation" },
-      { "type": "p", "text": "Un plan de relocalisation des productions stratégiques (médicaments, équipements électroniques, alimentation) sera lancé avec des aides d'État conditionnées au maintien de l'emploi et aux standards environnementaux." }
+      {
+        "type": "h2",
+        "text": "Blocage des prix"
+      },
+      {
+        "type": "p",
+        "text": "Les prix de l'alimentation de base, de l'énergie et du carburant seront bloqués en état d'urgence sociale. La réduflation — réduire les quantités sans baisser les prix — sera interdite et sanctionnée."
+      },
+      {
+        "type": "h2",
+        "text": "Relocalisation"
+      },
+      {
+        "type": "p",
+        "text": "Un plan de relocalisation des productions stratégiques (médicaments, équipements électroniques, alimentation) sera lancé avec des aides d'État conditionnées au maintien de l'emploi et aux standards environnementaux."
+      }
     ]
   },
   {
@@ -152,10 +320,22 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre10/",
     "summary": "Garantir l'égalité républicaine pour tous les habitants, lutter contre les discriminations et réformer la politique migratoire.",
     "content": [
-      { "type": "h2", "text": "Égalité républicaine" },
-      { "type": "p", "text": "La discrimination à l'emploi, au logement ou aux services sera passible de sanctions renforcées. Un testing systématique sera organisé par l'État pour mesurer et sanctionner les pratiques discriminatoires." },
-      { "type": "h2", "text": "Politique migratoire humaniste" },
-      { "type": "p", "text": "Le droit d'asile sera garanti dans son intégralité. Les procédures seront accélérées avec davantage de moyens humains. Les sans-papiers présents depuis plusieurs années pourront obtenir un titre de séjour de plein droit." }
+      {
+        "type": "h2",
+        "text": "Égalité républicaine"
+      },
+      {
+        "type": "p",
+        "text": "La discrimination à l'emploi, au logement ou aux services sera passible de sanctions renforcées. Un testing systématique sera organisé par l'État pour mesurer et sanctionner les pratiques discriminatoires."
+      },
+      {
+        "type": "h2",
+        "text": "Politique migratoire humaniste"
+      },
+      {
+        "type": "p",
+        "text": "Le droit d'asile sera garanti dans son intégralité. Les procédures seront accélérées avec davantage de moyens humains. Les sans-papiers présents depuis plusieurs années pourront obtenir un titre de séjour de plein droit."
+      }
     ]
   },
   {
@@ -165,10 +345,22 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre11/",
     "summary": "Porter le budget de la culture à 1 % du PIB, défendre la création et garantir l'accès au sport pour tous.",
     "content": [
-      { "type": "h2", "text": "1 % pour la culture" },
-      { "type": "p", "text": "Le budget de la culture sera porté à 1 % du PIB. Le statut des intermittents du spectacle sera consolidé et étendu aux artistes précaires. Les droits d'auteur seront défendus face aux plateformes numériques." },
-      { "type": "h2", "text": "Sport pour tous" },
-      { "type": "p", "text": "Le sport sera reconnu comme une priorité de santé publique. Les associations sportives de proximité seront soutenues par une dotation nationale. Les équipements sportifs seront rénovés dans les quartiers populaires." }
+      {
+        "type": "h2",
+        "text": "1 % pour la culture"
+      },
+      {
+        "type": "p",
+        "text": "Le budget de la culture sera porté à 1 % du PIB. Le statut des intermittents du spectacle sera consolidé et étendu aux artistes précaires. Les droits d'auteur seront défendus face aux plateformes numériques."
+      },
+      {
+        "type": "h2",
+        "text": "Sport pour tous"
+      },
+      {
+        "type": "p",
+        "text": "Le sport sera reconnu comme une priorité de santé publique. Les associations sportives de proximité seront soutenues par une dotation nationale. Les équipements sportifs seront rénovés dans les quartiers populaires."
+      }
     ]
   },
   {
@@ -178,12 +370,30 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre12/",
     "summary": "Inscrire la règle verte dans la Constitution, planifier la transition énergétique et créer un Commissariat à la planification écologique.",
     "content": [
-      { "type": "h2", "text": "La règle verte constitutionnalisée" },
-      { "type": "p", "text": "La règle verte — ne jamais prendre à la nature plus qu'elle ne peut reconstituer — sera inscrite dans la Constitution et aura valeur supérieure aux traités commerciaux internationaux." },
-      { "type": "h2", "text": "Planification démocratique" },
-      { "type": "p", "text": "Un Commissariat à la planification écologique sera créé auprès du Premier ministre. Il coordonnera la transition de chaque secteur économique avec des objectifs contraignants et des conférences citoyennes régulières." },
-      { "type": "h2", "text": "Sortie du nucléaire programmée" },
-      { "type": "p", "text": "La France entamera une sortie progressive du nucléaire sur 20 ans, en parallèle du déploiement massif des énergies renouvelables. L'objectif est de couvrir 100 % des besoins en énergie renouvelable d'ici 2050." }
+      {
+        "type": "h2",
+        "text": "La règle verte constitutionnalisée"
+      },
+      {
+        "type": "p",
+        "text": "La règle verte — ne jamais prendre à la nature plus qu'elle ne peut reconstituer — sera inscrite dans la Constitution et aura valeur supérieure aux traités commerciaux internationaux."
+      },
+      {
+        "type": "h2",
+        "text": "Planification démocratique"
+      },
+      {
+        "type": "p",
+        "text": "Un Commissariat à la planification écologique sera créé auprès du Premier ministre. Il coordonnera la transition de chaque secteur économique avec des objectifs contraignants et des conférences citoyennes régulières."
+      },
+      {
+        "type": "h2",
+        "text": "Sortie du nucléaire programmée"
+      },
+      {
+        "type": "p",
+        "text": "La France entamera une sortie progressive du nucléaire sur 20 ans, en parallèle du déploiement massif des énergies renouvelables. L'objectif est de couvrir 100 % des besoins en énergie renouvelable d'ici 2050."
+      }
     ]
   },
   {
@@ -193,10 +403,22 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre13/",
     "summary": "Rénover 700 000 logements par an, développer les transports publics et relancer le fret ferroviaire.",
     "content": [
-      { "type": "h2", "text": "Rénovation thermique" },
-      { "type": "p", "text": "700 000 logements seront rénovés chaque année, contre 70 000 aujourd'hui. Un service public de la rénovation thermique accompagnera les ménages modestes avec une prise en charge à 100 % pour les foyers sous le plafond du revenu médian." },
-      { "type": "h2", "text": "Transports du quotidien" },
-      { "type": "p", "text": "Le fret ferroviaire sera relancé avec un plan d'investissement décennal. Les transports en commun seront gratuits dans toutes les agglomérations de plus de 100 000 habitants. Les lignes rurales fermées seront rouvertes." }
+      {
+        "type": "h2",
+        "text": "Rénovation thermique"
+      },
+      {
+        "type": "p",
+        "text": "700 000 logements seront rénovés chaque année, contre 70 000 aujourd'hui. Un service public de la rénovation thermique accompagnera les ménages modestes avec une prise en charge à 100 % pour les foyers sous le plafond du revenu médian."
+      },
+      {
+        "type": "h2",
+        "text": "Transports du quotidien"
+      },
+      {
+        "type": "p",
+        "text": "Le fret ferroviaire sera relancé avec un plan d'investissement décennal. Les transports en commun seront gratuits dans toutes les agglomérations de plus de 100 000 habitants. Les lignes rurales fermées seront rouvertes."
+      }
     ]
   },
   {
@@ -206,10 +428,22 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre14/",
     "summary": "Défendre la biodiversité, interdire les pesticides les plus dangereux et reconnaître des droits à la nature.",
     "content": [
-      { "type": "h2", "text": "Droits de la nature" },
-      { "type": "p", "text": "La France accordera des droits juridiques à certains écosystèmes (fleuves, forêts, littoraux) pour permettre leur défense en justice par des gardiens désignés. Les écocides seront érigés en crime en droit français et défendus au niveau international." },
-      { "type": "h2", "text": "Agriculture paysanne" },
-      { "type": "p", "text": "Le glyphosate et les néonicotinoïdes seront interdits. La PAC sera réformée pour subventionner les pratiques agro-écologiques. L'installation des jeunes agriculteurs sera soutenue par des prêts à taux zéro." }
+      {
+        "type": "h2",
+        "text": "Droits de la nature"
+      },
+      {
+        "type": "p",
+        "text": "La France accordera des droits juridiques à certains écosystèmes (fleuves, forêts, littoraux) pour permettre leur défense en justice par des gardiens désignés. Les écocides seront érigés en crime en droit français et défendus au niveau international."
+      },
+      {
+        "type": "h2",
+        "text": "Agriculture paysanne"
+      },
+      {
+        "type": "p",
+        "text": "Le glyphosate et les néonicotinoïdes seront interdits. La PAC sera réformée pour subventionner les pratiques agro-écologiques. L'installation des jeunes agriculteurs sera soutenue par des prêts à taux zéro."
+      }
     ]
   },
   {
@@ -219,10 +453,22 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre15/",
     "summary": "Reconstruire l'hôpital public, garantir l'accès aux soins dans les déserts médicaux et investir dans la prévention.",
     "content": [
-      { "type": "h2", "text": "Hôpital public" },
-      { "type": "p", "text": "L'hôpital public bénéficiera d'un plan d'urgence pluriannuel : recrutement de 100 000 soignants, revalorisation des salaires, fin de la tarification à l'acte (T2A) remplacée par un financement au besoin de santé." },
-      { "type": "h2", "text": "Déserts médicaux" },
-      { "type": "p", "text": "Un système de conventionnement sélectif permettra de réguler l'installation des médecins spécialistes dans les zones surdotées et d'inciter à l'installation dans les déserts médicaux. Les centres de santé publics seront multipliés." }
+      {
+        "type": "h2",
+        "text": "Hôpital public"
+      },
+      {
+        "type": "p",
+        "text": "L'hôpital public bénéficiera d'un plan d'urgence pluriannuel : recrutement de 100 000 soignants, revalorisation des salaires, fin de la tarification à l'acte (T2A) remplacée par un financement au besoin de santé."
+      },
+      {
+        "type": "h2",
+        "text": "Déserts médicaux"
+      },
+      {
+        "type": "p",
+        "text": "Un système de conventionnement sélectif permettra de réguler l'installation des médecins spécialistes dans les zones surdotées et d'inciter à l'installation dans les déserts médicaux. Les centres de santé publics seront multipliés."
+      }
     ]
   },
   {
@@ -232,12 +478,30 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/",
     "summary": "Quitter l'OTAN, reconnaître l'État palestinien, défendre un monde multipolaire et pacifique.",
     "content": [
-      { "type": "h2", "text": "Sortir de l'OTAN" },
-      { "type": "p", "text": "La France quittera le commandement intégré de l'OTAN et retrouvera une politique étrangère indépendante. Elle proposera une conférence internationale pour un désarmement général et contrôlé." },
-      { "type": "h2", "text": "Palestine et conflits" },
-      { "type": "p", "text": "La France reconnaîtra l'État de Palestine selon les frontières de 1967. Elle suspendra immédiatement les exportations d'armes vers Israël et soutiendra une solution à deux États dans le cadre du droit international." },
-      { "type": "h2", "text": "Solidarité internationale" },
-      { "type": "p", "text": "L'aide publique au développement sera portée à 0,7 % du RNB. La France plaidera pour l'annulation de la dette des pays du Sud et contre les paradis fiscaux dans les enceintes internationales." }
+      {
+        "type": "h2",
+        "text": "Sortir de l'OTAN"
+      },
+      {
+        "type": "p",
+        "text": "La France quittera le commandement intégré de l'OTAN et retrouvera une politique étrangère indépendante. Elle proposera une conférence internationale pour un désarmement général et contrôlé."
+      },
+      {
+        "type": "h2",
+        "text": "Palestine et conflits"
+      },
+      {
+        "type": "p",
+        "text": "La France reconnaîtra l'État de Palestine selon les frontières de 1967. Elle suspendra immédiatement les exportations d'armes vers Israël et soutiendra une solution à deux États dans le cadre du droit international."
+      },
+      {
+        "type": "h2",
+        "text": "Solidarité internationale"
+      },
+      {
+        "type": "p",
+        "text": "L'aide publique au développement sera portée à 0,7 % du RNB. La France plaidera pour l'annulation de la dette des pays du Sud et contre les paradis fiscaux dans les enceintes internationales."
+      }
     ]
   },
   {
@@ -247,10 +511,22 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre17/",
     "summary": "Désobéir aux traités européens contraires à l'intérêt général, renégocier les règles de libre-échange et refonder l'Union.",
     "content": [
-      { "type": "h2", "text": "Désobéissance constructive" },
-      { "type": "p", "text": "La France appliquera une stratégie de désobéissance constructive : elle n'appliquera pas les traités européens contraires aux mandats démocratiques des peuples, tout en proposant des renégociations." },
-      { "type": "h2", "text": "Libre-échange et CETA" },
-      { "type": "p", "text": "Le CETA et tous les accords de libre-échange contraires à nos standards environnementaux et sociaux seront dénoncés. La France défendra une clause miroir obligatoire dans tout accord commercial européen." }
+      {
+        "type": "h2",
+        "text": "Désobéissance constructive"
+      },
+      {
+        "type": "p",
+        "text": "La France appliquera une stratégie de désobéissance constructive : elle n'appliquera pas les traités européens contraires aux mandats démocratiques des peuples, tout en proposant des renégociations."
+      },
+      {
+        "type": "h2",
+        "text": "Libre-échange et CETA"
+      },
+      {
+        "type": "p",
+        "text": "Le CETA et tous les accords de libre-échange contraires à nos standards environnementaux et sociaux seront dénoncés. La France défendra une clause miroir obligatoire dans tout accord commercial européen."
+      }
     ]
   },
   {
@@ -260,12 +536,30 @@
     "url": "https://melenchon2027.fr/programme2025/livre/chapitre18/",
     "summary": "Défendre les communs numériques, réguler l'intelligence artificielle et faire de l'espace un bien commun de l'humanité.",
     "content": [
-      { "type": "h2", "text": "Communs numériques" },
-      { "type": "p", "text": "Internet sera reconnu comme un bien commun universel. Les GAFAM seront soumis à une taxe sur leur chiffre d'affaires en France. Les logiciels publics seront publiés en open source." },
-      { "type": "h2", "text": "Intelligence artificielle" },
-      { "type": "p", "text": "L'IA sera encadrée par un traité international prohibant les systèmes d'armes létaux autonomes. En France, tout algorithme de décision publique sera soumis à audit citoyen et transparence obligatoire." },
-      { "type": "h2", "text": "Espace commun" },
-      { "type": "p", "text": "La France défendra un traité international sur l'espace empêchant sa privatisation. L'Agence spatiale européenne sera renforcée et une coopération scientifique internationale élargie, y compris avec les pays du Sud." }
+      {
+        "type": "h2",
+        "text": "Communs numériques"
+      },
+      {
+        "type": "p",
+        "text": "Internet sera reconnu comme un bien commun universel. Les GAFAM seront soumis à une taxe sur leur chiffre d'affaires en France. Les logiciels publics seront publiés en open source."
+      },
+      {
+        "type": "h2",
+        "text": "Intelligence artificielle"
+      },
+      {
+        "type": "p",
+        "text": "L'IA sera encadrée par un traité international prohibant les systèmes d'armes létaux autonomes. En France, tout algorithme de décision publique sera soumis à audit citoyen et transparence obligatoire."
+      },
+      {
+        "type": "h2",
+        "text": "Espace commun"
+      },
+      {
+        "type": "p",
+        "text": "La France défendra un traité international sur l'espace empêchant sa privatisation. L'Agence spatiale européenne sera renforcée et une coopération scientifique internationale élargie, y compris avec les pays du Sud."
+      }
     ]
   }
 ]

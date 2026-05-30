@@ -13,18 +13,18 @@ const schema = z.object({
 export async function POST(req: NextRequest) {
   let body: unknown
   try { body = await req.json() } catch {
-    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
+    return NextResponse.json({ error: 'JSON invalide' }, { status: 400 })
   }
 
   const parsed = schema.safeParse(body)
   if (!parsed.success) {
-    return NextResponse.json({ error: 'Invalid vote data', issues: parsed.error.issues }, { status: 400 })
+    return NextResponse.json({ error: 'Données de vote invalides', issues: parsed.error.issues }, { status: 400 })
   }
 
   const { id, choice, voterId, encryptedVote } = parsed.data
 
   if (!getMeasureById(id)) {
-    return NextResponse.json({ error: 'Unknown measure id' }, { status: 400 })
+    return NextResponse.json({ error: 'Identifiant de mesure inconnu' }, { status: 400 })
   }
 
   await prisma.vote.create({

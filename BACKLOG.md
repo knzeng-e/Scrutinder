@@ -1,28 +1,30 @@
 # Scrutinder — Backlog
 
-> **Read before starting any task.** Mark tasks 🟡 when you begin, ✅ when done.
-> One task in progress at a time per agent. See [AGENTS.md](AGENTS.md) for agent roles.
+> **À lire avant de commencer toute tâche.** Marquer les tâches 🟡 au démarrage, ✅ quand elles sont terminées.
+> Une seule tâche en cours à la fois par agent. Voir [AGENTS.md](AGENTS.md) pour les rôles des agents.
 
-## Status legend
+## Légende des statuts
 
-| Symbol | Meaning |
-|---|---|
-| 🔵 | TODO — not started |
-| 🟡 | IN PROGRESS |
-| ✅ | DONE |
-| 🔴 | BLOCKED — note reason inline |
-| ⏸️ | DEFERRED — intentionally postponed |
+| Symbole | Signification |
+| --- | --- |
+| 🔵 | À FAIRE — non démarré |
+| 🟡 | EN COURS |
+| ✅ | TERMINÉ |
+| 🔴 | BLOQUÉ — préciser la raison en ligne |
+| ⏸️ | REPORTÉ — intentionnellement différé |
 
 ---
 
-## Phase 1 — Next.js Foundation
-**Goal:** Feature parity with the Vite/Node.js prototype (`../swipe_app`), with persistent DB and proper server-side WebAuthn verification.
-**Status:** 🟡 IN PROGRESS
+## Phase 1 — Fondation Next.js
 
-### 1.1 Project scaffold & config
-- ✅ `CLAUDE.md` — project context, commands, invariants
-- ✅ `BACKLOG.md` — this file
-- ✅ `AGENTS.md` — agentic architecture
+**Objectif :** Parité fonctionnelle avec le prototype Vite/Node.js (`../swipe_app`), avec DB persistante et vérification WebAuthn côté serveur.
+**Statut :** 🟡 EN COURS
+
+### 1.1 Scaffold et configuration du projet
+
+- ✅ `CLAUDE.md` — contexte du projet, commandes, invariants
+- ✅ `BACKLOG.md` — ce fichier
+- ✅ `AGENTS.md` — architecture agentique
 - ✅ `package.json` — Next.js 15, Prisma, Framer Motion, simplewebauthn, Zod
 - ✅ `next.config.ts`
 - ✅ `tsconfig.json`
@@ -31,117 +33,128 @@
 - ✅ `.env.example`
 - ✅ `.gitignore`
 
-### 1.2 Data layer
-- ✅ `prisma/schema.prisma` — Vote, WebAuthnCredential, WebAuthnChallenge
-- ✅ `types/index.ts` — shared TypeScript types
-- ✅ `lib/db.ts` — Prisma singleton
-- ✅ `lib/measures.ts` — static data loader
-- ✅ `lib/crypto.ts` — SHA-256 vote hash
-- ✅ `data/measures.json` — migrated from prototype
-- ✅ `data/program.json` — migrated from prototype
-- ✅ `public/images/` — measure + chapter images migrated
+### 1.2 Couche de données
 
-### 1.3 Identity & auth
-- ✅ `lib/identity.client.ts` — localStorage + AES-GCM (browser only)
-- ✅ `lib/identity.server.ts` — @simplewebauthn/server helpers
-- ✅ `context/IdentityContext.tsx` — global auth state
+- ✅ `prisma/schema.prisma` — Vote, WebAuthnCredential, WebAuthnChallenge
+- ✅ `types/index.ts` — types TypeScript partagés
+- ✅ `lib/db.ts` — singleton Prisma
+- ✅ `lib/measures.ts` — chargeur de données statiques
+- ✅ `lib/crypto.ts` — hash SHA-256 des votes
+- ✅ `data/measures.json` — migré depuis le prototype
+- ✅ `data/program.json` — migré depuis le prototype
+- ✅ `public/images/` — images de mesures et chapitres migrées
+
+### 1.3 Identité et authentification
+
+- ✅ `lib/identity.client.ts` — localStorage + AES-GCM (navigateur uniquement)
+- ✅ `lib/identity.server.ts` — helpers @simplewebauthn/server
+- ✅ `context/IdentityContext.tsx` — état d'authentification global
 - ✅ `app/api/auth/register/generate-options/route.ts`
 - ✅ `app/api/auth/register/verify/route.ts`
 - ✅ `app/api/auth/authenticate/generate-options/route.ts`
 - ✅ `app/api/auth/authenticate/verify/route.ts`
 
-### 1.4 API routes
+### 1.4 Routes API
+
 - ✅ `app/api/measures/route.ts`
 - ✅ `app/api/program/route.ts`
 - ✅ `app/api/vote/route.ts`
 - ✅ `app/api/vote/undo/route.ts`
 - ✅ `app/api/results/route.ts`
 
-### 1.5 App shell & pages
+### 1.5 Shell et pages de l'application
+
 - ✅ `app/layout.tsx` + `app/globals.css`
-- ✅ `app/page.tsx` — home / onboarding / dashboard
+- ✅ `app/page.tsx` — accueil / onboarding / tableau de bord
 - ✅ `app/swipe/page.tsx`
 - ✅ `app/programme/page.tsx`
 - ✅ `app/resultats/page.tsx`
 
-### 1.6 Components
-- ✅ `components/AppShell.tsx` — header + nav wrapper
-- ✅ `components/IdentityGate.tsx` — passkey create/unlock UI
-- ✅ `components/SwipeDeck.tsx` — Framer Motion swipe deck
-- ✅ `components/ActionBar.tsx` — vote buttons
-- ✅ `components/ProgramReader.tsx` — chapter browser + detail
-- ✅ `components/ResultsDashboard.tsx` — stats + sortable table
+### 1.6 Composants
 
-### 1.7 Validation (manual)
-- 🔵 Run `npm install` — zero errors
-- 🔵 Run `npm run db:generate` — Prisma client generated
-- 🔵 Run `npm run db:push` — schema applied to Neon
-- 🔵 `npm run dev` starts without errors
-- 🔵 Passkey creation works on `localhost` (Chrome/Safari)
-- 🔵 Passkey unlock works on same device
-- 🔵 Swipe → vote row appears in `Vote` table (check Prisma Studio)
-- 🔵 Undo → vote row deleted
-- 🔵 Results page shows correct counts
-- 🔵 Program reader shows all 18 chapters
+- ✅ `components/AppShell.tsx` — en-tête + wrapper de navigation
+- ✅ `components/IdentityGate.tsx` — UI de création/déverrouillage de passkey
+- ✅ `components/SwipeDeck.tsx` — deck de swipe Framer Motion
+- ✅ `components/ActionBar.tsx` — boutons de vote
+- ✅ `components/ProgramReader.tsx` — navigateur de chapitres + détail
+- ✅ `components/ResultsDashboard.tsx` — statistiques + tableau triable
 
----
+### 1.7 Validation (manuelle)
 
-## Phase 2 — UX Polish
-**Goal:** Production-quality UX, accessibility, PWA.
-**Start when:** All Phase 1 validation tasks are ✅
-
-- 🔵 Framer Motion swipe velocity + spring physics tuning
-- 🔵 Mobile safe-area insets (iOS Safari notch, `env(safe-area-inset-*)`)
-- 🔵 PWA: `public/manifest.json` + service worker (`next-pwa`)
-- 🔵 OG share card for results page (`opengraph-image.tsx`)
-- 🔵 Keyboard navigation: arrow keys to vote while focused on deck
-- 🔵 Measure images with `next/image` (lazy load, blur placeholder)
-- 🔵 Account panel: view vote history, change pseudonym, delete profile
-- 🔵 Loading skeletons for async data fetches
-- 🔵 Dark/light theme toggle (respects `prefers-color-scheme`)
-- 🔵 Rate-limit `/api/vote` (1 vote per voterId per measureId per session)
-- 🔵 Shadcn/ui integration for dialogs, toasts, buttons
+- 🔵 Exécuter `npm install` — zéro erreur
+- 🔵 Exécuter `npm run db:generate` — client Prisma généré
+- 🔵 Exécuter `npm run db:push` — schéma appliqué à Neon
+- 🔵 `npm run dev` démarre sans erreur
+- 🔵 La création de passkey fonctionne sur `localhost` (Chrome/Safari)
+- 🔵 Le déverrouillage par passkey fonctionne sur le même appareil
+- 🔵 Swipe → la ligne de vote apparaît dans la table `Vote` (vérifier via Prisma Studio)
+- 🔵 Annulation → ligne de vote supprimée
+- 🔵 La page de résultats affiche les bons comptages
+- 🔵 Le lecteur de programme affiche les 18 chapitres
 
 ---
 
-## Phase 3 — Community Features
-**Goal:** Discussion spaces for debated measures + contribution box.
-**Start when:** Phase 2 is complete and app is deployed.
+## Phase 2 — Finition UX
 
-- 🔵 Discussion threads per measure (stored in DB, sorted by `discuter` count)
-- 🔵 Idea/contribution submission form per measure
-- 🔵 Admin dashboard (password-protected): top debated measures, CSV export
-- 🔵 Shareable vote session summary card (Canvas API → PNG download)
-- 🔵 Citoyen café event relay: groups can pin meetups on a measure page
+**Objectif :** UX de qualité production, accessibilité, PWA.
+**Démarrer quand :** Toutes les tâches de validation de la Phase 1 sont ✅
 
----
-
-## Phase 4 — Production Deployment
-**Goal:** Live, secure, monitored on Vercel + Neon.
-**Start when:** Phase 3 features are stable (or skip Phase 3 and deploy after Phase 2).
-
-- 🔵 Vercel project created + GitHub repo connected
-- 🔵 Neon PostgreSQL provisioned, `DATABASE_URL` set in Vercel env
-- 🔵 Custom domain (e.g. `scrutinder.fr`) + HTTPS enforced
-- 🔵 `WEBAUTHN_RP_ID` + `WEBAUTHN_ORIGIN` set to production values
-- 🔵 Sentry error tracking (`@sentry/nextjs`)
-- 🔵 Vercel Analytics enabled
-- 🔵 Smoke test: iOS Safari + Chrome Android — WebAuthn must work
-- 🔵 Load test: 500 concurrent voters
-- 🔵 `prisma migrate deploy` run for production migration
+- 🔵 Réglage de la vélocité de swipe + physique des ressorts Framer Motion
+- 🔵 Marges de zone sécurisée mobile (encoche iOS Safari, `env(safe-area-inset-*)`)
+- 🔵 PWA : `public/manifest.json` + service worker (`next-pwa`)
+- 🔵 Carte de partage OG pour la page de résultats (`opengraph-image.tsx`)
+- 🔵 Navigation au clavier : touches fléchées pour voter quand le deck est actif
+- 🔵 Images des mesures avec `next/image` (chargement différé, placeholder flou)
+- 🔵 Panneau de compte : voir l'historique des votes, changer le pseudonyme, supprimer le profil
+- 🔵 Squelettes de chargement pour les appels de données asynchrones
+- 🔵 Bascule thème clair/sombre (respecte `prefers-color-scheme`)
+- 🔵 Limiter le débit sur `/api/vote` (1 vote par voterId par measureId par session)
+- 🔵 Intégration shadcn/ui pour les dialogs, toasts, boutons
 
 ---
 
-## Phase 5 — Web3 Transparency Layer ⏸️ DEFERRED
-**Goal:** Anchor vote aggregates on Polkadot Bulletin Chain for public verifiability.
-**Deferred until:** Strong user base established post Phase 4.
+## Phase 3 — Fonctionnalités communautaires
 
-- ⏸️ `@parity/bulletin-sdk` integration
-- ⏸️ Hourly vote snapshot → CID published on Bulletin Chain
-- ⏸️ `/verifier` page: fetch chain state, compare with live DB
-- ⏸️ Optional identity upgrade: link passkey to Polkadot address
+**Objectif :** Espaces de discussion pour les mesures débattues + boîte à contributions.
+**Démarrer quand :** La Phase 2 est terminée et l'application est déployée.
+
+- 🔵 Fils de discussion par mesure (stockés en DB, triés par comptage `discuter`)
+- 🔵 Formulaire de soumission d'idées/contributions par mesure
+- 🔵 Tableau de bord admin (protégé par mot de passe) : mesures les plus débattues, export CSV
+- 🔵 Carte de résumé de session de vote partageable (Canvas API → téléchargement PNG)
+- 🔵 Relais d'événements Citoyen café : les groupes peuvent épingler des rassemblements sur une page de mesure
 
 ---
 
-## Current focus
-**Phase 1.7 Validation** — set up `.env.local`, run `npm install && npm run db:generate && npm run db:push`, then validate manually.
+## Phase 4 — Déploiement en production
+
+**Objectif :** En ligne, sécurisé, monitoré sur Vercel + Neon.
+**Démarrer quand :** Les fonctionnalités de la Phase 3 sont stables (ou passer la Phase 3 et déployer après la Phase 2).
+
+- 🔵 Projet Vercel créé + dépôt GitHub connecté
+- 🔵 PostgreSQL Neon provisionné, `DATABASE_URL` défini dans les variables d'environnement Vercel
+- 🔵 Domaine personnalisé (ex. `scrutinder.fr`) + HTTPS imposé
+- 🔵 `WEBAUTHN_RP_ID` + `WEBAUTHN_ORIGIN` définis aux valeurs de production
+- 🔵 Suivi d'erreurs Sentry (`@sentry/nextjs`)
+- 🔵 Vercel Analytics activé
+- 🔵 Test de fumée : iOS Safari + Chrome Android — WebAuthn doit fonctionner
+- 🔵 Test de charge : 500 votants simultanés
+- 🔵 `prisma migrate deploy` exécuté pour la migration de production
+
+---
+
+## Phase 5 — Couche de transparence Web3 ⏸️ REPORTÉE
+
+**Objectif :** Ancrer les agrégats de votes sur Polkadot Bulletin Chain pour une vérifiabilité publique.
+**Reporté jusqu'à :** Base d'utilisateurs solide établie après la Phase 4.
+
+- ⏸️ Intégration `@parity/bulletin-sdk`
+- ⏸️ Snapshot horaire des votes → CID publié sur la Bulletin Chain
+- ⏸️ Page `/verifier` : récupérer l'état de la chaîne, comparer avec la DB en direct
+- ⏸️ Mise à niveau d'identité optionnelle : lier le passkey à une adresse Polkadot
+
+---
+
+## Focus actuel
+
+**Phase 1.7 Validation** — configurer `.env.local`, exécuter `npm install && npm run db:generate && npm run db:push`, puis valider manuellement.
