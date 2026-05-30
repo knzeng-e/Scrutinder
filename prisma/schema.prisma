@@ -14,7 +14,11 @@ model Vote {
   voterId       String?
   encryptedVote Json?
   createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
+  // Un votant ne peut avoir qu'un seul vote par mesure (intégrité du sondage).
+  // PostgreSQL autorise plusieurs NULL, donc les votes anonymes restent possibles.
+  @@unique([voterId, measureId])
   @@index([measureId])
   @@index([voterId])
   @@index([measureId, choice])

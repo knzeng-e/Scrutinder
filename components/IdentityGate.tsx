@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useIdentity } from '@/context/IdentityContext'
 
 export function IdentityGate() {
-  const { status, error, isBusy, isSupported, createAccount, unlock, clearError } = useIdentity()
+  const { status, error, isBusy, isSupported, needsRecovery, createAccount, unlock, recreatePasskey, clearError } = useIdentity()
   const [pseudonym, setPseudonym] = useState('')
   const isLocked = status === 'locked'
 
@@ -72,11 +72,11 @@ export function IdentityGate() {
             </div>
           )}
 
-          {/* CTA */}
+          {/* CTA principal */}
           <button
             type="button"
             disabled={!isSupported || isBusy}
-            onClick={isLocked ? unlock : () => createAccount(pseudonym)}
+            onClick={needsRecovery ? recreatePasskey : isLocked ? unlock : () => createAccount(pseudonym)}
             className="w-full bg-red-600 hover:bg-red-500 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-4 rounded-2xl transition-all"
           >
             {isBusy ? (
@@ -84,6 +84,8 @@ export function IdentityGate() {
                 <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 Veuillez patienter…
               </span>
+            ) : needsRecovery ? (
+              'Recréer mon passkey →'
             ) : isLocked ? (
               'Déverrouiller avec passkey →'
             ) : (
@@ -91,8 +93,22 @@ export function IdentityGate() {
             )}
           </button>
 
+          {/* Lien de récupération (toujours disponible en mode verrouillé) */}
+          {isLocked && !needsRecovery && (
+            <button
+              type="button"
+              disabled={isBusy}
+              onClick={recreatePasskey}
+              className="w-full text-slate-500 hover:text-slate-300 text-xs mt-3 transition-colors disabled:opacity-40"
+            >
+              Problème de connexion ? Recréer le passkey sur cet appareil
+            </button>
+          )}
+
           <p className="text-slate-600 text-xs text-center mt-4 leading-relaxed">
-            Votre appareil crée une clé locale. Le serveur ne reçoit pas votre identité civile.
+            {needsRecovery
+              ? 'Vos votes locaux sont conservés : la clé de votre appareil est réutilisée.'
+              : 'Votre appareil crée une clé locale. Le serveur ne reçoit pas votre identité civile.'}
           </p>
         </div>
       </div>

@@ -148,6 +148,13 @@ export async function authenticateIdentity(identity: Identity): Promise<Identity
   if (!optRes.ok) throw new Error('Impossible de démarrer l\'authentification.')
   const options = await optRes.json()
 
+  // Aucun credential côté serveur (base réinitialisée ou nouvel appareil) :
+  // le passkey local existe mais le serveur ne le connaît pas. On le signale
+  // pour proposer une récupération (ré-enregistrement avec la même graine).
+  if (!options.allowCredentials || options.allowCredentials.length === 0) {
+    throw new Error('NO_SERVER_CREDENTIAL')
+  }
+
   // 2. Browser WebAuthn ceremony (v10.0.0 takes options directly, not wrapped in { optionsJSON })
   const assertResp = await startAuthentication(options)
 

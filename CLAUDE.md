@@ -66,11 +66,14 @@ npm run dev
 ### Machine à états d'authentification
 
 ```
-loading → onboarding → [passkey créé]   → ready
-        → locked     → [passkey vérifié] → ready
+loading → onboarding → [passkey créé]      → ready
+        → locked     → [passkey vérifié]    → ready
+        → locked     → [NO_SERVER_CREDENTIAL] → recréation passkey → ready
 ```
 
 `IdentityContext` (`context/IdentityContext.tsx`) gère cet état. Toutes les pages protégées redirigent vers `/` quand `status !== 'ready'`.
+
+**Récupération (base réinitialisée / nouvel appareil) :** le passkey n'est qu'une _barrière d'accès_ ; la vraie identité est la `seed` dans `localStorage`. Si `generate-options` renvoie `allowCredentials` vide (aucun credential côté serveur), `authenticateIdentity` lève `NO_SERVER_CREDENTIAL` → `IdentityGate` passe en mode `needsRecovery` → `recreatePasskey()` ré-enregistre un passkey en réutilisant la même `seed` (et donc le même `id` + l'historique de votes chiffré). Un lien de récupération est aussi toujours visible en mode verrouillé.
 
 ### Choix de vote
 
@@ -117,6 +120,8 @@ La `seed` est la racine du chiffrement AES-GCM local. Les passkeys WebAuthn serv
 4. **Singleton Prisma** - toujours importer depuis `lib/db.ts` ; jamais `new PrismaClient()` dans les gestionnaires de routes
 5. **`'use client'` sur les composants interactifs** - les composants serveur uniquement pour les données statiques ou les lectures DB
 6. **WebAuthn nécessite HTTPS ou localhost** - le développement sur `http://localhost:3000` est acceptable
+7. **Un vote par votant par mesure** - `/api/vote` fait un upsert sur `@@unique([voterId, measureId])` ; re-voter remplace le choix. Les votes anonymes (sans `voterId`) sont insérés sans dédup.
+8. **Node 18+ requis** - Prisma 6 et Next.js 15 ne tournent pas sous Node 16 (erreur WASM `externref`). Utiliser `nvm use 20`+ pour `prisma generate` / `db:push` / `dev`.
 
 ## Variables d'environnement
 

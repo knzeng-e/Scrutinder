@@ -22,4 +22,9 @@
 @layer utilities {
   .safe-top    { padding-top: env(safe-area-inset-top); }
   .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+  /* Bloc de squelette de chargement */
+  .skeleton {
+    @apply bg-slate-800 rounded-xl animate-pulse;
+  }
 }

@@ -17,8 +17,12 @@ interface IdentityContextValue {
   error: string
   isBusy: boolean
   isSupported: boolean
+  /** vrai quand le passkey local n'a pas de credential côté serveur (base réinitialisée / nouvel appareil) */
+  needsRecovery: boolean
   createAccount: (pseudonym: string) => Promise<void>
   unlock: () => Promise<void>
+  /** ré-enregistre un passkey pour l'identité locale existante (réutilise la graine) */
+  recreatePasskey: () => Promise<void>
   savePseudonym: (pseudonym: string) => void
   logout: () => void
   deleteProfile: () => void
@@ -32,6 +36,7 @@ export function IdentityProvider({ children }: { children: React.ReactNode }) {
   const [status, setStatus] = useState<AuthStatus>('loading')
   const [error, setError] = useState('')
   const [isBusy, setIsBusy] = useState(false)
+  const [needsRecovery, setNeedsRecovery] = useState(false)
   const isSupported = isWebAuthnSupported()
 
   useEffect(() => {
@@ -67,7 +72,31 @@ export function IdentityProvider({ children }: { children: React.ReactNode }) {
       setIdentity(unlocked)
       setStatus('ready')
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Déverrouillage impossible.')
+      const msg = e instanceof Error ? e.message : 'Déverrouillage impossible.'
+      if (msg === 'NO_SERVER_CREDENTIAL') {
+        setNeedsRecovery(true)
+        setError('Ce passkey n’est plus reconnu par le serveur (base réinitialisée ou nouvel appareil). Recréez votre passkey pour retrouver l’accès.')
+      } else {
+        setError(msg)
+      }
+    } finally {
+      setIsBusy(false)
+    }
+  }, [identity])
+
+  // Récupération : ré-enregistre un passkey pour l'identité locale existante.
+  // La graine (et donc l'historique de votes chiffré) est préservée.
+  const recreatePasskey = useCallback(async () => {
+    if (!identity) return
+    setIsBusy(true)
+    setError('')
+    try {
+      const recreated = await createIdentityWithPasskey(identity, identity.pseudonym)
+      setIdentity(recreated)
+      setNeedsRecovery(false)
+      setStatus('ready')
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Recréation du passkey impossible.')
     } finally {
       setIsBusy(false)
     }
@@ -89,11 +118,11 @@ export function IdentityProvider({ children }: { children: React.ReactNode }) {
     setStatus('onboarding')
   }, [identity])
 
-  const clearError = useCallback(() => setError(''), [])
+  const clearError = useCallback(() => { setError(''); setNeedsRecovery(false) }, [])
 
   return (
     <IdentityContext.Provider
-      value={{ identity, status, error, isBusy, isSupported, createAccount, unlock, savePseudonym, logout, deleteProfile, clearError }}
+      value={{ identity, status, error, isBusy, isSupported, needsRecovery, createAccount, unlock, recreatePasskey, savePseudonym, logout, deleteProfile, clearError }}
     >
       {children}
     </IdentityContext.Provider>

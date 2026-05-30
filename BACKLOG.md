@@ -106,12 +106,16 @@
 - ✅ Images des mesures avec `next/image` (`priority` sur la carte active, lazy sur la suivante)
 - ✅ Panneau de compte (`AccountPanel`) : historique votes, pseudonyme, verrouillage, suppression
 - ✅ `AppHeader` partagé : marque + bouton compte sur toutes les pages authentifiées
+- ✅ Anti-bourrage : 1 vote par `voterId` par `measureId` (contrainte unique + upsert dans `/api/vote`)
+- ✅ Squelettes de chargement (`loading.tsx` pour resultats / swipe / programme + `SkeletonHeader`)
+- ✅ Carte de partage OG pour la page de résultats (`app/resultats/opengraph-image.tsx`, total de votes en direct)
 - 🔵 Icônes PNG 192×512 (générer depuis `public/icons/icon.svg` pour installation PWA complète)
-- 🔵 Squelettes de chargement pour les appels de données asynchrones
-- 🔵 Carte de partage OG pour la page de résultats (`opengraph-image.tsx`)
 - 🔵 Bascule thème clair/sombre (respecte `prefers-color-scheme`)
-- 🔵 Limiter le débit sur `/api/vote` (1 vote par voterId par measureId par session)
 - 🔵 Intégration shadcn/ui pour les dialogs, toasts, boutons
+
+> ⚠️ **Migration DB requise** avant le prochain `npm run dev` : le modèle `Vote` a une nouvelle
+> contrainte `@@unique([voterId, measureId])` et un champ `updatedAt`. Lancer `npm run db:push`
+> (Node 18+). Si des votes en double existent déjà, réinitialiser la table de test au préalable.
 
 ---
 
