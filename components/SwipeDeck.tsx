@@ -78,7 +78,7 @@ function SwipeCard({ measure, isTop, onVote, onDetailChange }: CardProps) {
         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
         dragElastic={0.85}
         onDragEnd={handleDragEnd}
-        className="absolute inset-0 rounded-3xl overflow-hidden cursor-grab active:cursor-grabbing bg-slate-800 shadow-2xl select-none"
+        className="absolute inset-0 rounded-3xl overflow-hidden cursor-grab active:cursor-grabbing bg-surface2 shadow-2xl select-none"
       >
         {/* Image de fond via next/image */}
         {measure.imageUrl && (
@@ -145,22 +145,22 @@ function SwipeCard({ measure, isTop, onVote, onDetailChange }: CardProps) {
           onClick={closeDetail}
         >
           <div
-            className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 max-h-[80vh] overflow-y-auto shadow-2xl"
+            className="w-full max-w-md bg-surface border border-line rounded-3xl p-6 max-h-[80vh] overflow-y-auto shadow-2xl"
             onClick={e => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
-              <span className="bg-slate-800 text-slate-300 text-xs px-3 py-1 rounded-full">
+              <span className="bg-surface2 text-muted text-xs px-3 py-1 rounded-full">
                 {measure.chapter}
               </span>
               <button
-                className="text-slate-500 hover:text-white text-xl leading-none transition-colors"
+                className="text-faint hover:text-ink text-xl leading-none transition-colors"
                 onClick={closeDetail}
               >
                 ×
               </button>
             </div>
-            <h2 className="text-white font-bold text-lg mb-3">{measure.title}</h2>
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <h2 className="text-ink font-bold text-lg mb-3">{measure.title}</h2>
+            <p className="text-muted text-sm leading-relaxed">
               {measure.details || measure.summary}
             </p>
             {measure.programUrl && (
@@ -288,8 +288,8 @@ export function SwipeDeck({ measures: allMeasures }: SwipeDeckProps) {
         <AppHeader backHref="/" backLabel="Accueil" />
         <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
           <div className="text-6xl mb-5">🎉</div>
-          <h2 className="text-white font-bold text-2xl mb-2">Round termine !</h2>
-          <p className="text-slate-400 mb-8">
+          <h2 className="text-ink font-bold text-2xl mb-2">Round termine !</h2>
+          <p className="text-muted mb-8">
             Vous avez evalue {round.length} mesures.
           </p>
           <div className="flex flex-col gap-3 w-full max-w-xs">
@@ -301,11 +301,11 @@ export function SwipeDeck({ measures: allMeasures }: SwipeDeckProps) {
             </Link>
             <button
               onClick={restart}
-              className="bg-slate-800 hover:bg-slate-700 text-white font-semibold py-4 rounded-2xl transition-colors"
+              className="bg-surface2 hover:bg-surface3 text-ink font-semibold py-4 rounded-2xl transition-colors"
             >
               Nouveau round
             </button>
-            <Link href="/" className="text-slate-500 text-sm py-2 transition-colors hover:text-slate-400">
+            <Link href="/" className="text-faint text-sm py-2 transition-colors hover:text-muted">
               ← Retour a l&apos;accueil
             </Link>
           </div>
@@ -323,8 +323,8 @@ export function SwipeDeck({ measures: allMeasures }: SwipeDeckProps) {
 
       {/* Barre de progression */}
       <div className="flex items-center gap-3 px-4 py-3 shrink-0">
-        <span className="text-slate-500 text-sm tabular-nums shrink-0">{index + 1}/{round.length}</span>
-        <div className="flex-1 h-1 bg-slate-800 rounded-full overflow-hidden">
+        <span className="text-faint text-sm tabular-nums shrink-0">{index + 1}/{round.length}</span>
+        <div className="flex-1 h-1 bg-surface2 rounded-full overflow-hidden">
           <div
             className="h-full bg-red-500 rounded-full transition-all duration-300"
             style={{ width: `${((index + 1) / round.length) * 100}%` }}
@@ -337,7 +337,7 @@ export function SwipeDeck({ measures: allMeasures }: SwipeDeckProps) {
         {/* Carte fantome (suivante) */}
         {next && (
           <div
-            className="absolute inset-4 rounded-3xl bg-slate-800 overflow-hidden"
+            className="absolute inset-4 rounded-3xl bg-surface2 overflow-hidden"
             style={{ transform: 'scale(0.94) translateY(8px)', opacity: 0.5 }}
           >
             {next.imageUrl && (
@@ -358,7 +358,7 @@ export function SwipeDeck({ measures: allMeasures }: SwipeDeckProps) {
       </div>
 
       {/* Indice clavier (desktop uniquement) */}
-      <p className="text-center text-slate-700 text-xs pb-1 shrink-0 select-none hidden sm:block">
+      <p className="text-center text-faint text-xs pb-1 shrink-0 select-none hidden sm:block">
         ← Contre  &nbsp;|&nbsp; → Pour  &nbsp;|&nbsp; ↑ Prioritaire  &nbsp;|&nbsp; ↓ A discuter
       </p>
 

@@ -97,11 +97,11 @@
 ## Phase 2 - Finition UX
 
 **Objectif :** UX de qualité production, accessibilité, PWA.
-**Statut :** 🟡 EN COURS
+**Statut :** ✅ TERMINÉE
 
 - ✅ Vélocité de swipe (flick gesture) + physique des ressorts Framer Motion
 - ✅ Marges de zone sécurisée mobile (`env(safe-area-inset-*)` via classes Tailwind)
-- ✅ PWA : `public/manifest.json` + `public/icons/icon.svg` + méta `apple-web-app`
+- ✅ PWA : `public/manifest.json` + icônes PNG dynamiques + méta `apple-web-app`
 - ✅ Navigation au clavier : flèches ← → ↑ ↓ pour voter depuis le deck (desktop)
 - ✅ Images des mesures avec `next/image` (`priority` sur la carte active, lazy sur la suivante)
 - ✅ Panneau de compte (`AccountPanel`) : historique votes, pseudonyme, verrouillage, suppression
@@ -109,9 +109,11 @@
 - ✅ Anti-bourrage : 1 vote par `voterId` par `measureId` (contrainte unique + upsert dans `/api/vote`)
 - ✅ Squelettes de chargement (`loading.tsx` pour resultats / swipe / programme + `SkeletonHeader`)
 - ✅ Carte de partage OG pour la page de résultats (`app/resultats/opengraph-image.tsx`, total de votes en direct)
-- 🔵 Icônes PNG 192×512 (générer depuis `public/icons/icon.svg` pour installation PWA complète)
-- 🔵 Bascule thème clair/sombre (respecte `prefers-color-scheme`)
-- 🔵 Intégration shadcn/ui pour les dialogs, toasts, boutons
+- ✅ Icônes PNG 192/512 + favicon + apple-icon via `next/og` (`app/icon.tsx`, `app/apple-icon.tsx`, `app/icons/icon-{192,512}`)
+- ✅ Bascule thème clair/sombre : tokens CSS sémantiques + `ThemeProvider` (persistance + `prefers-color-scheme` + anti-flash) + toggle dans `AccountPanel`
+- ✅ Primitives UI : `cn()`, `Button`, `Modal` (dialog), système de `Toast` (utilisé pour l'enregistrement du pseudo)
+
+> Note : migration vers un design system tiers complet (shadcn/ui) volontairement écartée — les primitives maison (`components/ui/`) couvrent dialogs / toasts / boutons sans dépendance supplémentaire.
 
 > ⚠️ **Migration DB requise** avant le prochain `npm run dev` : le modèle `Vote` a une nouvelle
 > contrainte `@@unique([voterId, measureId])` et un champ `updatedAt`. Lancer `npm run db:push`

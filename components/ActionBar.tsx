@@ -18,7 +18,7 @@ export function ActionBar({ onVote, onUndo, canUndo }: ActionBarProps) {
         onClick={onUndo}
         disabled={!canUndo}
         aria-label="Annuler le dernier vote"
-        className={`${BTN_BASE} w-11 h-11 bg-slate-800 hover:bg-slate-700 disabled:opacity-25 disabled:cursor-not-allowed text-slate-300 text-base`}
+        className={`${BTN_BASE} w-11 h-11 bg-surface2 hover:bg-surface3 disabled:opacity-25 disabled:cursor-not-allowed text-muted text-base`}
       >
         ↩
       </button>
@@ -36,7 +36,7 @@ export function ActionBar({ onVote, onUndo, canUndo }: ActionBarProps) {
       <button
         onClick={() => onVote('incompris')}
         aria-label="Pas clair"
-        className={`${BTN_BASE} w-11 h-11 bg-slate-800 hover:bg-slate-700 text-slate-400 text-base font-bold`}
+        className={`${BTN_BASE} w-11 h-11 bg-surface2 hover:bg-surface3 text-muted text-base font-bold`}
       >
         ?
       </button>

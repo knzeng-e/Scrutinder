@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { IdentityProvider } from '@/context/IdentityContext'
+import { ThemeProvider, themeInitScript } from '@/context/ThemeContext'
+import { ToastProvider } from '@/components/ui/Toast'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -20,10 +22,6 @@ export const metadata: Metadata = {
     description: "Swipez le programme politique, mesurez l'adhesion populaire.",
     type: 'website',
   },
-  icons: {
-    icon: '/icons/icon.svg',
-    apple: '/icons/icon.svg',
-  },
 }
 
 export const viewport: Viewport = {
@@ -36,9 +34,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={inter.variable}>
-      <body className="bg-slate-950 text-white antialiased min-h-screen">
-        <IdentityProvider>{children}</IdentityProvider>
+    <html lang="fr" className={inter.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="bg-bg text-ink antialiased min-h-screen transition-colors">
+        <ThemeProvider>
+          <ToastProvider>
+            <IdentityProvider>{children}</IdentityProvider>
+          </ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

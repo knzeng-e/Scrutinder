@@ -31,7 +31,7 @@ function ChapterDetail({ chapter, onBack }: { chapter: ProgramChapter; onBack: (
       <div className="flex-1 overflow-y-auto px-4 py-6">
         <button
           onClick={onBack}
-          className="text-slate-400 hover:text-white text-sm mb-6 transition-colors flex items-center gap-1"
+          className="text-muted hover:text-ink text-sm mb-6 transition-colors flex items-center gap-1"
         >
           <span aria-hidden>←</span> Retour aux chapitres
         </button>
@@ -50,18 +50,18 @@ function ChapterDetail({ chapter, onBack }: { chapter: ProgramChapter; onBack: (
           {chapter.content.map((block, i) => {
             if (block.type === 'h2')
               return (
-                <h3 key={i} className="text-white font-bold text-xl mt-6 first:mt-0">
+                <h3 key={i} className="text-ink font-bold text-xl mt-6 first:mt-0">
                   {block.text}
                 </h3>
               )
             if (block.type === 'h3')
               return (
-                <h4 key={i} className="text-slate-200 font-semibold text-base mt-4">
+                <h4 key={i} className="text-ink font-semibold text-base mt-4">
                   {block.text}
                 </h4>
               )
             return (
-              <p key={i} className="text-slate-400 text-sm leading-relaxed">
+              <p key={i} className="text-muted text-sm leading-relaxed">
                 {block.text}
               </p>
             )
@@ -105,8 +105,8 @@ export function ProgramReader({ program }: ProgramReaderProps) {
       <div className="flex-1 overflow-y-auto px-4 py-6">
         {/* En-tete */}
         <div className="mb-8">
-          <h1 className="text-white font-bold text-2xl">L&apos;Avenir en Commun</h1>
-          <p className="text-slate-400 text-sm mt-1">
+          <h1 className="text-ink font-bold text-2xl">L&apos;Avenir en Commun</h1>
+          <p className="text-muted text-sm mt-1">
             {program.length} chapitres · programme 2025
           </p>
         </div>
@@ -118,10 +118,10 @@ export function ProgramReader({ program }: ProgramReaderProps) {
           return (
             <div key={part} className="mb-8">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-slate-300 font-semibold text-sm uppercase tracking-wider">
+                <h2 className="text-muted font-semibold text-sm uppercase tracking-wider">
                   {part}
                 </h2>
-                <span className="text-slate-600 text-xs">{chapters.length} chapitres</span>
+                <span className="text-faint text-xs">{chapters.length} chapitres</span>
               </div>
               <div className="space-y-2">
                 {chapters.map(chapter => (

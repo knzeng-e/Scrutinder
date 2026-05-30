@@ -32,14 +32,14 @@ export default function HomePage() {
             <h1 className="text-3xl font-black tracking-tight mb-1">
               <span className="text-red-500">Scru</span>tinder
             </h1>
-            <p className="text-slate-400 text-sm">
+            <p className="text-muted text-sm">
               Bonjour,{' '}
-              <span className="text-white">{identity?.pseudonym}</span>
+              <span className="text-ink">{identity?.pseudonym}</span>
             </p>
           </div>
           <button
             onClick={() => setShowAccount(true)}
-            className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-sm font-bold text-slate-200 transition-colors mt-1"
+            className="w-10 h-10 rounded-full bg-surface2 hover:bg-surface3 flex items-center justify-center text-sm font-bold text-ink transition-colors mt-1"
             aria-label="Mon compte"
           >
             {identity?.pseudonym?.[0]?.toUpperCase() ?? '?'}
@@ -60,28 +60,28 @@ export default function HomePage() {
 
           <button
             onClick={() => router.push('/programme')}
-            className="w-full bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold py-5 px-6 rounded-2xl text-left transition-all"
+            className="w-full bg-surface2 hover:bg-surface3 active:scale-[0.98] text-ink font-semibold py-5 px-6 rounded-2xl text-left transition-all"
           >
             <div className="text-xl mb-0.5">Lire le programme</div>
-            <div className="text-sm text-slate-400 font-normal">
+            <div className="text-sm text-muted font-normal">
               L&apos;Avenir en Commun — 19 chapitres
             </div>
           </button>
 
           <button
             onClick={() => router.push('/resultats')}
-            className="w-full bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold py-5 px-6 rounded-2xl text-left transition-all"
+            className="w-full bg-surface2 hover:bg-surface3 active:scale-[0.98] text-ink font-semibold py-5 px-6 rounded-2xl text-left transition-all"
           >
             <div className="text-xl mb-0.5">Resultats en direct</div>
-            <div className="text-sm text-slate-400 font-normal">
+            <div className="text-sm text-muted font-normal">
               Sondage agree · hash public de verification
             </div>
           </button>
         </div>
 
         {/* Pied de page identite */}
-        <footer className="mt-10 pt-6 border-t border-slate-800">
-          <p className="text-slate-700 text-xs text-center leading-relaxed">
+        <footer className="mt-10 pt-6 border-t border-line">
+          <p className="text-faint text-xs text-center leading-relaxed">
             Votes chiffres localement · Aucune donnee personnelle transmise
             <br />
             <span className="font-mono">{identity?.id?.slice(0, 20)}…</span>

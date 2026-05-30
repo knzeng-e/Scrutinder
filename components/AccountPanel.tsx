@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useIdentity } from '@/context/IdentityContext'
+import { useTheme } from '@/context/ThemeContext'
+import { useToast } from '@/components/ui/Toast'
 import {
   getEncryptedVotesForIdentity,
   decryptForLocalIdentity,
@@ -26,15 +28,16 @@ const COLORS: Record<string, string> = {
   contre:      'text-red-400',
   prioritaire: 'text-indigo-400',
   discuter:    'text-amber-400',
-  incompris:   'text-slate-500',
+  incompris:   'text-faint',
 }
 
 export function AccountPanel({ onClose }: Props) {
   const { identity, savePseudonym, logout, deleteProfile } = useIdentity()
+  const { theme, setTheme } = useTheme()
+  const { toast } = useToast()
   const [draft, setDraft] = useState(identity?.pseudonym ?? '')
   const [votes, setVotes] = useState<VotePayload[]>([])
   const [loading, setLoading] = useState(true)
-  const [saved, setSaved] = useState(false)
 
   useEffect(() => {
     if (!identity) return
@@ -53,8 +56,7 @@ export function AccountPanel({ onClose }: Props) {
 
   function handleSave() {
     savePseudonym(draft)
-    setSaved(true)
-    setTimeout(() => setSaved(false), 2000)
+    toast('Pseudonyme enregistré', 'success')
   }
 
   function handleDelete() {
@@ -76,16 +78,16 @@ export function AccountPanel({ onClose }: Props) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden max-h-[88vh] flex flex-col shadow-2xl"
+        className="w-full max-w-md bg-surface border border-line rounded-3xl overflow-hidden max-h-[88vh] flex flex-col shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
         {/* En-tete */}
-        <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-slate-800 shrink-0">
-          <h2 className="text-white font-bold text-lg">Mon compte</h2>
+        <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-line shrink-0">
+          <h2 className="text-ink font-bold text-lg">Mon compte</h2>
           <button
             onClick={onClose}
             aria-label="Fermer"
-            className="w-8 h-8 flex items-center justify-center rounded-full text-slate-500 hover:text-white hover:bg-slate-800 transition-colors text-xl leading-none"
+            className="w-8 h-8 flex items-center justify-center rounded-full text-faint hover:text-ink hover:bg-surface2 transition-colors text-xl leading-none"
           >
             x
           </button>
@@ -94,7 +96,7 @@ export function AccountPanel({ onClose }: Props) {
         <div className="overflow-y-auto flex-1 px-6 py-5 space-y-6">
           {/* Pseudonyme */}
           <section>
-            <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-2">
+            <p className="text-faint text-xs font-semibold uppercase tracking-wider mb-2">
               Pseudonyme
             </p>
             <div className="flex gap-2">
@@ -104,50 +106,75 @@ export function AccountPanel({ onClose }: Props) {
                 maxLength={32}
                 onChange={e => setDraft(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleSave()}
-                className="flex-1 bg-slate-800 border border-slate-700 focus:border-red-500 text-white rounded-xl px-4 py-2.5 text-sm outline-none transition-colors"
+                className="flex-1 bg-surface2 border border-line focus:border-red-500 text-ink rounded-xl px-4 py-2.5 text-sm outline-none transition-colors"
               />
               <button
                 onClick={handleSave}
-                className={`text-sm px-4 py-2.5 rounded-xl font-medium transition-all whitespace-nowrap ${
-                  saved
-                    ? 'bg-green-800 text-green-100'
-                    : 'bg-slate-700 hover:bg-slate-600 text-white'
-                }`}
+                className="text-sm px-4 py-2.5 rounded-xl font-medium transition-colors whitespace-nowrap bg-surface3 hover:bg-surface2 text-ink"
               >
-                {saved ? 'Sauvegarde !' : 'Sauvegarder'}
+                Sauvegarder
               </button>
             </div>
           </section>
 
           {/* ID cryptographique */}
           <section>
-            <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-2">
+            <p className="text-faint text-xs font-semibold uppercase tracking-wider mb-2">
               Identifiant cryptographique
             </p>
-            <p className="font-mono text-xs text-slate-500 break-all bg-slate-800 rounded-xl px-4 py-3 leading-relaxed">
+            <p className="font-mono text-xs text-faint break-all bg-surface2 rounded-xl px-4 py-3 leading-relaxed">
               {identity.id}
             </p>
-            <p className="text-slate-600 text-xs mt-1.5">
+            <p className="text-faint text-xs mt-1.5">
               Votre identite est locale - aucun serveur ne peut vous identifier.
             </p>
           </section>
 
+          {/* Apparence */}
+          <section>
+            <p className="text-faint text-xs font-semibold uppercase tracking-wider mb-2">
+              Apparence
+            </p>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setTheme('dark')}
+                className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-colors border ${
+                  theme === 'dark'
+                    ? 'bg-surface2 border-red-500 text-ink'
+                    : 'bg-surface2 border-line text-muted hover:text-ink'
+                }`}
+              >
+                🌙 Sombre
+              </button>
+              <button
+                onClick={() => setTheme('light')}
+                className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-colors border ${
+                  theme === 'light'
+                    ? 'bg-surface2 border-red-500 text-ink'
+                    : 'bg-surface2 border-line text-muted hover:text-ink'
+                }`}
+              >
+                ☀️ Clair
+              </button>
+            </div>
+          </section>
+
           {/* Historique des votes */}
           <section>
-            <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-3">
+            <p className="text-faint text-xs font-semibold uppercase tracking-wider mb-3">
               Votes enregistres sur cet appareil
               {votes.length > 0 && (
-                <span className="ml-1 text-slate-600 normal-case">({votes.length})</span>
+                <span className="ml-1 text-faint normal-case">({votes.length})</span>
               )}
             </p>
             {loading ? (
               <div className="space-y-2">
                 {[1, 2, 3].map(i => (
-                  <div key={i} className="h-14 bg-slate-800 rounded-xl animate-pulse" />
+                  <div key={i} className="h-14 bg-surface2 rounded-xl animate-pulse" />
                 ))}
               </div>
             ) : votes.length === 0 ? (
-              <p className="text-slate-600 text-sm py-2">
+              <p className="text-faint text-sm py-2">
                 Aucun vote enregistre sur cet appareil.
               </p>
             ) : (
@@ -157,13 +184,13 @@ export function AccountPanel({ onClose }: Props) {
                   return (
                     <li
                       key={i}
-                      className="bg-slate-800 rounded-xl px-4 py-3 flex items-center justify-between gap-3"
+                      className="bg-surface2 rounded-xl px-4 py-3 flex items-center justify-between gap-3"
                     >
-                      <span className="text-slate-300 text-sm leading-tight line-clamp-1 flex-1 min-w-0">
+                      <span className="text-muted text-sm leading-tight line-clamp-1 flex-1 min-w-0">
                         {measure?.title ?? `Mesure #${v.measureId}`}
                       </span>
                       <span
-                        className={`text-sm font-medium shrink-0 ${COLORS[v.choice] ?? 'text-slate-400'}`}
+                        className={`text-sm font-medium shrink-0 ${COLORS[v.choice] ?? 'text-muted'}`}
                       >
                         {LABELS[v.choice] ?? v.choice}
                       </span>
@@ -176,13 +203,13 @@ export function AccountPanel({ onClose }: Props) {
         </div>
 
         {/* Actions */}
-        <div className="px-6 py-4 border-t border-slate-800 space-y-2 shrink-0 safe-bottom">
+        <div className="px-6 py-4 border-t border-line space-y-2 shrink-0 safe-bottom">
           <button
             onClick={() => {
               logout()
               onClose()
             }}
-            className="w-full bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium py-3 rounded-2xl transition-colors"
+            className="w-full bg-surface2 hover:bg-surface3 text-ink text-sm font-medium py-3 rounded-2xl transition-colors"
           >
             Verrouiller le compte
           </button>

@@ -21,13 +21,13 @@ export function AppHeader({ showBrand = false, backHref, backLabel }: AppHeaderP
 
   return (
     <>
-      <header className="flex items-center justify-between px-4 py-3 border-b border-slate-800/60 shrink-0 safe-top">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-line/60 shrink-0 safe-top">
         {/* Gauche : retour ou marque */}
         <div className="min-w-0">
           {backHref ? (
             <Link
               href={backHref}
-              className="text-slate-500 hover:text-white text-sm transition-colors flex items-center gap-1"
+              className="text-faint hover:text-ink text-sm transition-colors flex items-center gap-1"
             >
               <span aria-hidden>←</span> {backLabel ?? 'Retour'}
             </Link>
@@ -42,9 +42,9 @@ export function AppHeader({ showBrand = false, backHref, backLabel }: AppHeaderP
         {status === 'ready' && identity ? (
           <button
             onClick={() => setShowAccount(true)}
-            className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
+            className="flex items-center gap-2 text-muted hover:text-ink transition-colors group"
           >
-            <span className="w-7 h-7 rounded-full bg-slate-700 group-hover:bg-slate-600 flex items-center justify-center text-xs font-bold text-slate-200 transition-colors">
+            <span className="w-7 h-7 rounded-full bg-surface3 group-hover:bg-surface3 flex items-center justify-center text-xs font-bold text-ink transition-colors">
               {initial}
             </span>
             <span className="text-sm hidden sm:inline truncate max-w-32">

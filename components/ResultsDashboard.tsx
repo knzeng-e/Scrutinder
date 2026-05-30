@@ -35,13 +35,13 @@ function StatCard({ icon, label, value, percentage, color }: {
   icon: string; label: string; value: number; percentage: string; color: string
 }) {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col gap-1">
+    <div className="bg-surface border border-line rounded-2xl p-4 flex flex-col gap-1">
       <span className="text-2xl" style={{ color }}>{icon}</span>
       <div className="flex items-baseline gap-1">
-        <span className="text-white font-bold text-xl">{value}</span>
-        <span className="text-slate-500 text-sm">{percentage}%</span>
+        <span className="text-ink font-bold text-xl">{value}</span>
+        <span className="text-faint text-sm">{percentage}%</span>
       </div>
-      <span className="text-slate-400 text-xs">{label}</span>
+      <span className="text-muted text-xs">{label}</span>
     </div>
   )
 }
@@ -67,7 +67,7 @@ function StackedBar({ global }: { global: EnrichedMeasure }) {
       </div>
       <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
         {CHOICES.map(({ key, icon, label, color }) => (
-          <span key={key} className="flex items-center gap-1 text-xs text-slate-400">
+          <span key={key} className="flex items-center gap-1 text-xs text-muted">
             <span style={{ color }}>{icon}</span>
             {label} · {pct(global[key], global.total)}%
           </span>
@@ -98,14 +98,14 @@ function ResultsTable({ rows, sortBy, sortDir, onSort }: {
     <div className="overflow-x-auto -mx-4">
       <table className="w-full text-sm min-w-[500px]">
         <thead>
-          <tr className="border-b border-slate-800">
-            <th className="text-left text-slate-500 font-medium py-2 px-4">Mesure</th>
+          <tr className="border-b border-line">
+            <th className="text-left text-faint font-medium py-2 px-4">Mesure</th>
             {cols.map(({ key, label, color }) => (
               <th
                 key={key}
                 onClick={() => onSort(key)}
                 className={`text-right py-2 px-2 cursor-pointer select-none font-medium transition-colors ${
-                  sortBy === key ? 'text-white' : 'text-slate-600 hover:text-slate-400'
+                  sortBy === key ? 'text-ink' : 'text-faint hover:text-muted'
                 }`}
                 style={sortBy === key && color ? { color } : {}}
               >
@@ -117,18 +117,18 @@ function ResultsTable({ rows, sortBy, sortDir, onSort }: {
         </thead>
         <tbody>
           {rows.map((m, i) => (
-            <tr key={m.id} className="border-b border-slate-900 hover:bg-slate-900/50 transition-colors">
+            <tr key={m.id} className="border-b border-line hover:bg-surface/50 transition-colors">
               <td className="py-3 px-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-slate-600 text-xs w-5 shrink-0 text-right">{i + 1}</span>
-                  <span className="text-slate-200 text-sm leading-tight">{m.title}</span>
+                  <span className="text-faint text-xs w-5 shrink-0 text-right">{i + 1}</span>
+                  <span className="text-ink text-sm leading-tight">{m.title}</span>
                 </div>
               </td>
               {cols.map(({ key, color }) => (
                 <td key={key} className="text-right py-3 px-2">
                   <span
-                    className={sortBy === key ? 'font-semibold' : 'text-slate-500'}
-                    style={sortBy === key ? { color: color ?? 'white' } : {}}
+                    className={sortBy === key ? 'font-semibold' : 'text-faint'}
+                    style={sortBy === key ? { color: color ?? 'rgb(var(--ink))' } : {}}
                   >
                     {m[key]}
                   </span>
@@ -192,8 +192,8 @@ export function ResultsDashboard({ measures, results }: ResultsDashboardProps) {
       <div className="flex-1 overflow-y-auto px-4 py-6">
         {/* En-tete */}
         <div className="mb-6">
-          <h1 className="text-white font-bold text-2xl">Resultats agreges</h1>
-          <p className="text-slate-400 text-sm mt-1">
+          <h1 className="text-ink font-bold text-2xl">Resultats agreges</h1>
+          <p className="text-muted text-sm mt-1">
             {global.total} vote{global.total !== 1 ? 's' : ''} · {measures.length} mesures
           </p>
         </div>
@@ -234,8 +234,8 @@ export function ResultsDashboard({ measures, results }: ResultsDashboardProps) {
               <div className="bg-indigo-950/50 border border-indigo-800/50 rounded-2xl px-4 py-3 flex gap-3 items-start">
                 <span className="text-indigo-400 text-xl shrink-0">★</span>
                 <div>
-                  <div className="text-slate-400 text-xs">Priorite n°1</div>
-                  <div className="text-white text-sm font-medium">{highlights.priority.title}</div>
+                  <div className="text-muted text-xs">Priorite n°1</div>
+                  <div className="text-ink text-sm font-medium">{highlights.priority.title}</div>
                 </div>
               </div>
             )}
@@ -243,8 +243,8 @@ export function ResultsDashboard({ measures, results }: ResultsDashboardProps) {
               <div className="bg-amber-950/50 border border-amber-800/50 rounded-2xl px-4 py-3 flex gap-3 items-start">
                 <span className="text-amber-400 text-xl shrink-0">…</span>
                 <div>
-                  <div className="text-slate-400 text-xs">La plus debattue</div>
-                  <div className="text-white text-sm font-medium">{highlights.debated.title}</div>
+                  <div className="text-muted text-xs">La plus debattue</div>
+                  <div className="text-ink text-sm font-medium">{highlights.debated.title}</div>
                 </div>
               </div>
             )}
@@ -254,18 +254,18 @@ export function ResultsDashboard({ measures, results }: ResultsDashboardProps) {
         {/* Tableau */}
         <div className="mb-4">
           <div className="flex justify-between items-center mb-3">
-            <h2 className="text-white font-semibold text-sm">
+            <h2 className="text-ink font-semibold text-sm">
               {showAll
                 ? `Toutes les mesures (${sorted.length})`
                 : `Top ${Math.min(TOP_N, sorted.length)}`}
             </h2>
-            <span className="text-slate-600 text-xs">Cliquez une colonne pour trier</span>
+            <span className="text-faint text-xs">Cliquez une colonne pour trier</span>
           </div>
           <ResultsTable rows={displayed} sortBy={sortBy} sortDir={sortDir} onSort={toggleSort} />
           {!showAll && sorted.length > TOP_N && (
             <button
               onClick={() => setShowAll(true)}
-              className="mt-4 w-full text-slate-500 hover:text-white text-sm py-2 transition-colors"
+              className="mt-4 w-full text-faint hover:text-ink text-sm py-2 transition-colors"
             >
               Voir les {sorted.length - TOP_N} autres mesures →
             </button>
@@ -273,7 +273,7 @@ export function ResultsDashboard({ measures, results }: ResultsDashboardProps) {
           {showAll && (
             <button
               onClick={() => setShowAll(false)}
-              className="mt-4 w-full text-slate-500 hover:text-white text-sm py-2 transition-colors"
+              className="mt-4 w-full text-faint hover:text-ink text-sm py-2 transition-colors"
             >
               Reduire ↑
             </button>
@@ -281,12 +281,12 @@ export function ResultsDashboard({ measures, results }: ResultsDashboardProps) {
         </div>
 
         {/* Hash d'integrite */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl px-4 py-4 mt-6">
-          <div className="text-slate-400 text-xs font-medium mb-1">
+        <div className="bg-surface border border-line rounded-2xl px-4 py-4 mt-6">
+          <div className="text-muted text-xs font-medium mb-1">
             Hash de verification (SHA-256)
           </div>
-          <div className="font-mono text-xs text-slate-500 break-all">{results.hash}</div>
-          <div className="text-slate-600 text-xs mt-2">
+          <div className="font-mono text-xs text-faint break-all">{results.hash}</div>
+          <div className="text-faint text-xs mt-2">
             Ce hash permet de verifier publiquement l&apos;integrite des resultats.
           </div>
         </div>
@@ -301,7 +301,7 @@ export function ResultsDashboard({ measures, results }: ResultsDashboardProps) {
           </Link>
           <Link
             href="/"
-            className="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-2xl text-center text-sm transition-colors"
+            className="flex-1 bg-surface2 hover:bg-surface3 text-ink font-semibold py-3 rounded-2xl text-center text-sm transition-colors"
           >
             Accueil
           </Link>
