@@ -1,12 +1,15 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useIdentity } from '@/context/IdentityContext'
 import { IdentityGate } from '@/components/IdentityGate'
+import { AccountPanel } from '@/components/AccountPanel'
 
 export default function HomePage() {
   const { identity, status } = useIdentity()
   const router = useRouter()
+  const [showAccount, setShowAccount] = useState(false)
 
   if (status === 'loading') {
     return (
@@ -21,49 +24,72 @@ export default function HomePage() {
   }
 
   return (
-    <main className="max-w-md mx-auto px-4 py-10 safe-top">
-      {/* Brand */}
-      <header className="mb-10">
-        <h1 className="text-3xl font-black tracking-tight mb-1">
-          <span className="text-red-500">Scru</span>tinder
-        </h1>
-        <p className="text-slate-400 text-sm">Bonjour, <span className="text-white">{identity?.pseudonym}</span></p>
-      </header>
+    <>
+      <main className="max-w-md mx-auto px-4 py-10 safe-top min-h-screen flex flex-col">
+        {/* En-tete marque */}
+        <header className="mb-10 flex items-start justify-between">
+          <div>
+            <h1 className="text-3xl font-black tracking-tight mb-1">
+              <span className="text-red-500">Scru</span>tinder
+            </h1>
+            <p className="text-slate-400 text-sm">
+              Bonjour,{' '}
+              <span className="text-white">{identity?.pseudonym}</span>
+            </p>
+          </div>
+          <button
+            onClick={() => setShowAccount(true)}
+            className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-sm font-bold text-slate-200 transition-colors mt-1"
+            aria-label="Mon compte"
+          >
+            {identity?.pseudonym?.[0]?.toUpperCase() ?? '?'}
+          </button>
+        </header>
 
-      {/* Actions */}
-      <div className="space-y-3">
-        <button
-          onClick={() => router.push('/swipe')}
-          className="w-full bg-red-600 hover:bg-red-500 active:scale-[0.98] text-white font-semibold py-5 px-6 rounded-2xl text-left transition-all"
-        >
-          <div className="text-xl mb-0.5">Swiper les mesures →</div>
-          <div className="text-sm text-red-200 font-normal">8 mesures aléatoires par round</div>
-        </button>
+        {/* Actions principales */}
+        <div className="space-y-3 flex-1">
+          <button
+            onClick={() => router.push('/swipe')}
+            className="w-full bg-red-600 hover:bg-red-500 active:scale-[0.98] text-white font-semibold py-5 px-6 rounded-2xl text-left transition-all"
+          >
+            <div className="text-xl mb-0.5">Swiper les mesures →</div>
+            <div className="text-sm text-red-200 font-normal">
+              8 mesures aleatoires par round
+            </div>
+          </button>
 
-        <button
-          onClick={() => router.push('/programme')}
-          className="w-full bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold py-5 px-6 rounded-2xl text-left transition-all"
-        >
-          <div className="text-xl mb-0.5">📖 Lire le programme</div>
-          <div className="text-sm text-slate-400 font-normal">L'Avenir en Commun - 18 chapitres</div>
-        </button>
+          <button
+            onClick={() => router.push('/programme')}
+            className="w-full bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold py-5 px-6 rounded-2xl text-left transition-all"
+          >
+            <div className="text-xl mb-0.5">Lire le programme</div>
+            <div className="text-sm text-slate-400 font-normal">
+              L&apos;Avenir en Commun — 19 chapitres
+            </div>
+          </button>
 
-        <button
-          onClick={() => router.push('/resultats')}
-          className="w-full bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold py-5 px-6 rounded-2xl text-left transition-all"
-        >
-          <div className="text-xl mb-0.5">📊 Résultats en direct</div>
-          <div className="text-sm text-slate-400 font-normal">Sondage agrégé · hash public de vérification</div>
-        </button>
-      </div>
+          <button
+            onClick={() => router.push('/resultats')}
+            className="w-full bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold py-5 px-6 rounded-2xl text-left transition-all"
+          >
+            <div className="text-xl mb-0.5">Resultats en direct</div>
+            <div className="text-sm text-slate-400 font-normal">
+              Sondage agree · hash public de verification
+            </div>
+          </button>
+        </div>
 
-      {/* Identity footer */}
-      <footer className="mt-10 pt-6 border-t border-slate-800">
-        <p className="text-slate-600 text-xs text-center leading-relaxed">
-          Votes chiffrés localement · Aucune donnée personnelle transmise<br />
-          ID local : <span className="font-mono">{identity?.id?.slice(0, 16)}…</span>
-        </p>
-      </footer>
-    </main>
+        {/* Pied de page identite */}
+        <footer className="mt-10 pt-6 border-t border-slate-800">
+          <p className="text-slate-700 text-xs text-center leading-relaxed">
+            Votes chiffres localement · Aucune donnee personnelle transmise
+            <br />
+            <span className="font-mono">{identity?.id?.slice(0, 20)}…</span>
+          </p>
+        </footer>
+      </main>
+
+      {showAccount && <AccountPanel onClose={() => setShowAccount(false)} />}
+    </>
   )
 }

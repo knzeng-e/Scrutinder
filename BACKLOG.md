@@ -81,32 +81,34 @@
 
 ### 1.7 Validation (manuelle)
 
-- 🔵 Exécuter `npm install` - zéro erreur
-- 🔵 Exécuter `npm run db:generate` - client Prisma généré
-- 🔵 Exécuter `npm run db:push` - schéma appliqué à Neon
-- 🔵 `npm run dev` démarre sans erreur
-- 🔵 La création de passkey fonctionne sur `localhost` (Chrome/Safari)
-- 🔵 Le déverrouillage par passkey fonctionne sur le même appareil
-- 🔵 Swipe → la ligne de vote apparaît dans la table `Vote` (vérifier via Prisma Studio)
-- 🔵 Annulation → ligne de vote supprimée
-- 🔵 La page de résultats affiche les bons comptages
-- 🔵 Le lecteur de programme affiche les 18 chapitres
+- ✅ Exécuter `npm install` - zéro erreur
+- ✅ Exécuter `npm run db:generate` - client Prisma généré
+- ✅ Exécuter `npm run db:push` - schéma appliqué à Neon
+- ✅ `npm run dev` démarre sans erreur
+- ✅ La création de passkey fonctionne sur `localhost` (Chrome/Safari)
+- ✅ Le déverrouillage par passkey fonctionne sur le même appareil
+- ✅ Swipe → la ligne de vote apparaît dans la table `Vote` (vérifier via Prisma Studio)
+- ✅ Annulation → ligne de vote supprimée
+- ✅ La page de résultats affiche les bons comptages
+- ✅ Le lecteur de programme affiche les 18 chapitres
 
 ---
 
 ## Phase 2 - Finition UX
 
 **Objectif :** UX de qualité production, accessibilité, PWA.
-**Démarrer quand :** Toutes les tâches de validation de la Phase 1 sont ✅
+**Statut :** 🟡 EN COURS
 
-- 🔵 Réglage de la vélocité de swipe + physique des ressorts Framer Motion
-- 🔵 Marges de zone sécurisée mobile (encoche iOS Safari, `env(safe-area-inset-*)`)
-- 🔵 PWA : `public/manifest.json` + service worker (`next-pwa`)
-- 🔵 Carte de partage OG pour la page de résultats (`opengraph-image.tsx`)
-- 🔵 Navigation au clavier : touches fléchées pour voter quand le deck est actif
-- 🔵 Images des mesures avec `next/image` (chargement différé, placeholder flou)
-- 🔵 Panneau de compte : voir l'historique des votes, changer le pseudonyme, supprimer le profil
+- ✅ Vélocité de swipe (flick gesture) + physique des ressorts Framer Motion
+- ✅ Marges de zone sécurisée mobile (`env(safe-area-inset-*)` via classes Tailwind)
+- ✅ PWA : `public/manifest.json` + `public/icons/icon.svg` + méta `apple-web-app`
+- ✅ Navigation au clavier : flèches ← → ↑ ↓ pour voter depuis le deck (desktop)
+- ✅ Images des mesures avec `next/image` (`priority` sur la carte active, lazy sur la suivante)
+- ✅ Panneau de compte (`AccountPanel`) : historique votes, pseudonyme, verrouillage, suppression
+- ✅ `AppHeader` partagé : marque + bouton compte sur toutes les pages authentifiées
+- 🔵 Icônes PNG 192×512 (générer depuis `public/icons/icon.svg` pour installation PWA complète)
 - 🔵 Squelettes de chargement pour les appels de données asynchrones
+- 🔵 Carte de partage OG pour la page de résultats (`opengraph-image.tsx`)
 - 🔵 Bascule thème clair/sombre (respecte `prefers-color-scheme`)
 - 🔵 Limiter le débit sur `/api/vote` (1 vote par voterId par measureId par session)
 - 🔵 Intégration shadcn/ui pour les dialogs, toasts, boutons
