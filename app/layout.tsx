@@ -6,7 +6,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Scrutinder — Swipez le programme',
+  title: 'Scrutinder - Swipez le programme',
   description: 'Évaluez les mesures de L\'Avenir en Commun en swipant. Sondage transparent, chiffré localement.',
   openGraph: {
     title: 'Scrutinder',

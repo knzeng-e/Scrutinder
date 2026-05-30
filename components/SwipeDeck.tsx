@@ -171,7 +171,7 @@ export function SwipeDeck({ measures: allMeasures }: SwipeDeckProps) {
 
     if (identity && encryptedVote) storeEncryptedVote(identity, measure.id, encryptedVote)
 
-    // Fire-and-forget — don't block the swipe animation
+    // Fire-and-forget - don't block the swipe animation
     fetch('/api/vote', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -22,9 +22,9 @@ export interface ProgramChapter {
 }
 
 export interface Identity {
-  id: string           // "sc_<hex32>" — derived from sha256(seed)
+  id: string           // "sc_<hex32>" - derived from sha256(seed)
   pseudonym: string
-  seed: string         // base64, 32 bytes — NEVER send to server
+  seed: string         // base64, 32 bytes - NEVER send to server
   createdAt: string
   passkey?: {
     credentialId: string

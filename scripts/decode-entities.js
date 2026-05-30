@@ -15,7 +15,7 @@ const ENTITIES = {
   '&ldquo;':  '“', // left double quotation mark
   '&rdquo;':  '”', // right double quotation mark
   '&hellip;': '…', // horizontal ellipsis
-  '&mdash;':  '—', // em dash
+  '&mdash;':  '-', // em dash
   '&ndash;':  '–', // en dash
   '&laquo;':  '«', // left-pointing double angle quotation mark
   '&raquo;':  '»', // right-pointing double angle quotation mark

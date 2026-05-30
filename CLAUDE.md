@@ -1,4 +1,4 @@
-# CLAUDE.md — Scrutinder
+# CLAUDE.md - Scrutinder
 
 > Swipez les mesures politiques. Mesurez l'adhésion populaire. WebAuthn + Next.js 15 + Neon PostgreSQL.
 > **Lisez [BACKLOG.md](BACKLOG.md) pour l'état des tâches. Lisez [AGENTS.md](AGENTS.md) pour les rôles des agents.**
@@ -48,7 +48,7 @@ npm run dev
 ```
 /                       accueil : onboarding si nouvel utilisateur, tableau de bord si authentifié
 /swipe                  deck de swipe (authentification requise)
-/programme              lecteur de programme — 18 chapitres (authentification requise)
+/programme              lecteur de programme - 18 chapitres (authentification requise)
 /resultats              résultats des votes en direct (public)
 
 /api/measures           GET  → tableau measures.json
@@ -80,15 +80,15 @@ loading → onboarding → [passkey créé]   → ready
 | `contre` | gauche | ✕ |
 | `prioritaire` | haut | ★ |
 | `discuter` | bas | … |
-| `incompris` | — | ? |
+| `incompris` | - | ? |
 
 ### Modèle d'identité locale
 
 ```typescript
 {
-  id: string          // "sc_<hex32>" — stable, dérivé du hash de la graine
+  id: string          // "sc_<hex32>" - stable, dérivé du hash de la graine
   pseudonym: string
-  seed: string        // base64, 32 octets aléatoires — ne quitte JAMAIS le navigateur
+  seed: string        // base64, 32 octets aléatoires - ne quitte JAMAIS le navigateur
   createdAt: string
   passkey?: {
     credentialId: string
@@ -99,7 +99,7 @@ loading → onboarding → [passkey créé]   → ready
 }
 ```
 
-La `seed` est la racine du chiffrement AES-GCM local. Les passkeys WebAuthn servent uniquement à contrôler l'accès — ils ne remplacent pas la graine.
+La `seed` est la racine du chiffrement AES-GCM local. Les passkeys WebAuthn servent uniquement à contrôler l'accès - ils ne remplacent pas la graine.
 
 ### Schéma DB (voir `prisma/schema.prisma`)
 
@@ -109,14 +109,14 @@ La `seed` est la racine du chiffrement AES-GCM local. Les passkeys WebAuthn serv
 | `WebAuthnCredential` | Clés publiques de passkeys stockées |
 | `WebAuthnChallenge` | Challenges d'enregistrement/authentification de courte durée (60s) |
 
-## Invariants clés — TOUS les agents doivent les respecter
+## Invariants clés - TOUS les agents doivent les respecter
 
-1. **La graine ne quitte jamais le navigateur** — ne jamais sérialiser ni envoyer `identity.seed` à une API
-2. **IDs de mesures stables** — les valeurs `id` entières dans `data/measures.json` sont des références FK dans la table `Vote` ; ne jamais renuméroter
+1. **La graine ne quitte jamais le navigateur** - ne jamais sérialiser ni envoyer `identity.seed` à une API
+2. **IDs de mesures stables** - les valeurs `id` entières dans `data/measures.json` sont des références FK dans la table `Vote` ; ne jamais renuméroter
 3. **Validation Zod** sur chaque route POST avant toute interaction avec la DB
-4. **Singleton Prisma** — toujours importer depuis `lib/db.ts` ; jamais `new PrismaClient()` dans les gestionnaires de routes
-5. **`'use client'` sur les composants interactifs** — les composants serveur uniquement pour les données statiques ou les lectures DB
-6. **WebAuthn nécessite HTTPS ou localhost** — le développement sur `http://localhost:3000` est acceptable
+4. **Singleton Prisma** - toujours importer depuis `lib/db.ts` ; jamais `new PrismaClient()` dans les gestionnaires de routes
+5. **`'use client'` sur les composants interactifs** - les composants serveur uniquement pour les données statiques ou les lectures DB
+6. **WebAuthn nécessite HTTPS ou localhost** - le développement sur `http://localhost:3000` est acceptable
 
 ## Variables d'environnement
 
@@ -124,7 +124,7 @@ La `seed` est la racine du chiffrement AES-GCM local. Les passkeys WebAuthn serv
 DATABASE_URL=            # Chaîne de connexion Neon PostgreSQL
 WEBAUTHN_RP_ID=          # "localhost" en dev, votre domaine en prod (ex. scrutinder.fr)
 WEBAUTHN_ORIGIN=         # "http://localhost:3000" en dev, "https://scrutinder.fr" en prod
-NEXT_PUBLIC_BASE_URL=    # Optionnel — URL de base pour les liens absolus
+NEXT_PUBLIC_BASE_URL=    # Optionnel - URL de base pour les liens absolus
 ```
 
 ## Discipline sur les dépendances
@@ -133,7 +133,7 @@ NEXT_PUBLIC_BASE_URL=    # Optionnel — URL de base pour les liens absolus
 
 Lors de l'ajout d'un nouveau package :
 
-1. `npm install <pkg>` — installe la dernière version
+1. `npm install <pkg>` - installe la dernière version
 2. Lire les définitions de types installées avant d'écrire du code : `cat node_modules/<pkg>/dist/**/*.d.ts | grep "function <name>"` ou `ls node_modules/<pkg>/`
 3. Épingler la version exacte dans `package.json` : remplacer `^x.y.z` par `x.y.z`
 4. Committer `package-lock.json` avec le changement
@@ -142,12 +142,12 @@ Lors de la mise à jour d'un package :
 
 1. Lire les notes de version pour les changements incompatibles
 2. Vérifier les nouvelles signatures de types dans `node_modules` après installation
-3. Exécuter `npm run typecheck` — corriger toutes les erreurs avant de committer
+3. Exécuter `npm run typecheck` - corriger toutes les erreurs avant de committer
 
 ## Vérification des types
 
 ```bash
-npm run typecheck   # tsc --noEmit — à exécuter avant chaque commit
+npm run typecheck   # tsc --noEmit - à exécuter avant chaque commit
 ```
 
 Zéro erreur est la norme. La CI le vérifiera en Phase 4.

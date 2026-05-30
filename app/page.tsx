@@ -45,7 +45,7 @@ export default function HomePage() {
           className="w-full bg-slate-800 hover:bg-slate-700 active:scale-[0.98] text-white font-semibold py-5 px-6 rounded-2xl text-left transition-all"
         >
           <div className="text-xl mb-0.5">📖 Lire le programme</div>
-          <div className="text-sm text-slate-400 font-normal">L'Avenir en Commun — 18 chapitres</div>
+          <div className="text-sm text-slate-400 font-normal">L'Avenir en Commun - 18 chapitres</div>
         </button>
 
         <button

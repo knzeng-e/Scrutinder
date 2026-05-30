@@ -22,7 +22,7 @@ async function cleanExpiredChallenges() {
 export async function generateRegistrationOptionsForUser(userId: string, pseudonym: string) {
   await cleanExpiredChallenges()
 
-  // userID is optional in v10 — omitting it lets the library generate a random one.
+  // userID is optional in v10 - omitting it lets the library generate a random one.
   // We identify users by userId (stored as challenge.userId), not by the WebAuthn userHandle.
   const options = await generateRegistrationOptions({
     rpName: RP_NAME,
@@ -77,8 +77,8 @@ export async function verifyRegistrationForUser(
   // v10.0.1: registrationInfo exposes credentialID, credentialPublicKey, counter directly
   // (not nested under a `credential` object as in later versions)
   const {
-    credentialID,        // Base64URLString — already a string, no conversion needed
-    credentialPublicKey, // Uint8Array — must be converted to base64url for storage
+    credentialID,        // Base64URLString - already a string, no conversion needed
+    credentialPublicKey, // Uint8Array - must be converted to base64url for storage
     counter,
     credentialDeviceType,
     credentialBackedUp,

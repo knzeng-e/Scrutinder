@@ -1,4 +1,4 @@
-# AGENTS.md — Architecture agentique de Scrutinder
+# AGENTS.md - Architecture agentique de Scrutinder
 
 > Ce fichier définit comment les agents IA naviguent dans Scrutinder et y contribuent.
 > **Toujours lire [BACKLOG.md](BACKLOG.md) en premier** pour trouver les tâches ouvertes et comprendre la phase en cours.
@@ -29,7 +29,7 @@
 
 - Tous les composants interactifs doivent être `'use client'`
 - Les composants serveur ne peuvent être utilisés que pour les pages qui passent des données statiques en props
-- Utiliser le hook `useIdentity()` pour l'état d'authentification — ne jamais lire localStorage directement dans les composants
+- Utiliser le hook `useIdentity()` pour l'état d'authentification - ne jamais lire localStorage directement dans les composants
 
 ### `backend-agent`
 
@@ -39,8 +39,8 @@
 
 - Chaque route POST valide l'entrée avec Zod avant tout appel DB
 - Ne jamais retourner des erreurs Prisma brutes au client
-- Utiliser le singleton de `lib/db.ts` — jamais `new PrismaClient()`
-- `Vote.choice` est un enum : `pour | contre | discuter | prioritaire | incompris` — pas d'ajout sans migration
+- Utiliser le singleton de `lib/db.ts` - jamais `new PrismaClient()`
+- `Vote.choice` est un enum : `pour | contre | discuter | prioritaire | incompris` - pas d'ajout sans migration
 
 ### `auth-agent`
 
@@ -48,16 +48,16 @@
 **Responsabilités :** Flux de passkeys WebAuthn, chiffrement AES-GCM des votes, cycle de vie de l'identité
 **Invariants critiques :**
 
-- `identity.seed` est généré côté navigateur et stocké uniquement dans `localStorage` — **il ne doit jamais être envoyé au serveur**
-- Les challenges WebAuthn expirent en 60 secondes — nettoyer les challenges expirés à chaque requête
+- `identity.seed` est généré côté navigateur et stocké uniquement dans `localStorage` - **il ne doit jamais être envoyé au serveur**
+- Les challenges WebAuthn expirent en 60 secondes - nettoyer les challenges expirés à chaque requête
 - `WEBAUTHN_RP_ID` doit correspondre exactement à l'origine : `localhost` en dev, domaine réel en prod
-- À la création du passkey, `sc_<hex32>` est dérivé de `sha256(seed)` — c'est stable et déterministe
+- À la création du passkey, `sc_<hex32>` est dérivé de `sha256(seed)` - c'est stable et déterministe
 
 ### `data-agent`
 
 **Périmètre :** `data/measures.json`, `data/program.json`, `scripts/` (futurs scripts de synchronisation)
 **Responsabilités :** Maintenir les données des mesures et du programme à jour
-**Invariant critique :** Les valeurs `id` dans `measures.json` sont des références FK entières dans la table `Vote` — **ne jamais renuméroter ni réutiliser les IDs** ; si une mesure est supprimée, laisser un vide ou la marquer comme dépréciée
+**Invariant critique :** Les valeurs `id` dans `measures.json` sont des références FK entières dans la table `Vote` - **ne jamais renuméroter ni réutiliser les IDs** ; si une mesure est supprimée, laisser un vide ou la marquer comme dépréciée
 
 ### `devops-agent`
 
@@ -74,7 +74,7 @@
 scrutinder/
 ├── CLAUDE.md              ← Commandes, architecture, invariants (LIRE EN PREMIER)
 ├── BACKLOG.md             ← État des tâches (METTRE À JOUR au fil du travail)
-├── AGENTS.md              ← Ce fichier — rôles des agents et coordination
+├── AGENTS.md              ← Ce fichier - rôles des agents et coordination
 │
 ├── app/
 │   ├── layout.tsx         ← Layout racine : polices, métadonnées, wrapper IdentityProvider
@@ -120,7 +120,7 @@ scrutinder/
 │   └── index.ts           ← Measure, ProgramChapter, Identity, VoteChoice, ResultsData, etc.
 │
 ├── data/
-│   ├── measures.json      ← Mesures politiques (IDs entiers stables — ne jamais renuméroter !)
+│   ├── measures.json      ← Mesures politiques (IDs entiers stables - ne jamais renuméroter !)
 │   └── program.json       ← Chapitres du programme (18 entrées)
 │
 ├── prisma/
@@ -136,11 +136,11 @@ scrutinder/
 
 ## Communication inter-agents
 
-Les agents ne communiquent pas directement — ils partagent l'état via :
+Les agents ne communiquent pas directement - ils partagent l'état via :
 
-1. `BACKLOG.md` — statut des tâches
-2. `types/index.ts` — contrats de données partagés
-3. `CLAUDE.md` — invariants et commandes
+1. `BACKLOG.md` - statut des tâches
+2. `types/index.ts` - contrats de données partagés
+3. `CLAUDE.md` - invariants et commandes
 
 Si un agent découvre un bug ou un bloquant hors de son périmètre, il doit :
 
@@ -163,7 +163,7 @@ Si un agent découvre un bug ou un bloquant hors de son périmètre, il doit :
 
 1. Créer `components/<Name>.tsx` avec `'use client'` en haut du fichier
 2. Importer `useIdentity()` si l'état d'authentification est nécessaire
-3. Utiliser les classes Tailwind — pas de styles inline sauf pour les valeurs dynamiques
+3. Utiliser les classes Tailwind - pas de styles inline sauf pour les valeurs dynamiques
 4. Ajouter le composant à la carte des fichiers dans AGENTS.md
 
 ### Modifier le schéma DB
@@ -176,5 +176,5 @@ Si un agent découvre un bug ou un bloquant hors de son périmètre, il doit :
 ### Mettre à jour les fichiers de données
 
 1. Modifier `data/measures.json` ou `data/program.json`
-2. Lors de l'ajout de nouvelles mesures, continuer la séquence entière — ne jamais réutiliser les IDs supprimés
+2. Lors de l'ajout de nouvelles mesures, continuer la séquence entière - ne jamais réutiliser les IDs supprimés
 3. Exécuter `npm run db:push` si vous avez ajouté de nouvelles mesures nécessitant des compteurs de votes pré-remplis

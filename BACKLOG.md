@@ -1,4 +1,4 @@
-# Scrutinder — Backlog
+# Scrutinder - Backlog
 
 > **À lire avant de commencer toute tâche.** Marquer les tâches 🟡 au démarrage, ✅ quand elles sont terminées.
 > Une seule tâche en cours à la fois par agent. Voir [AGENTS.md](AGENTS.md) pour les rôles des agents.
@@ -7,25 +7,25 @@
 
 | Symbole | Signification |
 | --- | --- |
-| 🔵 | À FAIRE — non démarré |
+| 🔵 | À FAIRE - non démarré |
 | 🟡 | EN COURS |
 | ✅ | TERMINÉ |
-| 🔴 | BLOQUÉ — préciser la raison en ligne |
-| ⏸️ | REPORTÉ — intentionnellement différé |
+| 🔴 | BLOQUÉ - préciser la raison en ligne |
+| ⏸️ | REPORTÉ - intentionnellement différé |
 
 ---
 
-## Phase 1 — Fondation Next.js
+## Phase 1 - Fondation Next.js
 
 **Objectif :** Parité fonctionnelle avec le prototype Vite/Node.js (`../swipe_app`), avec DB persistante et vérification WebAuthn côté serveur.
 **Statut :** 🟡 EN COURS
 
 ### 1.1 Scaffold et configuration du projet
 
-- ✅ `CLAUDE.md` — contexte du projet, commandes, invariants
-- ✅ `BACKLOG.md` — ce fichier
-- ✅ `AGENTS.md` — architecture agentique
-- ✅ `package.json` — Next.js 15, Prisma, Framer Motion, simplewebauthn, Zod
+- ✅ `CLAUDE.md` - contexte du projet, commandes, invariants
+- ✅ `BACKLOG.md` - ce fichier
+- ✅ `AGENTS.md` - architecture agentique
+- ✅ `package.json` - Next.js 15, Prisma, Framer Motion, simplewebauthn, Zod
 - ✅ `next.config.ts`
 - ✅ `tsconfig.json`
 - ✅ `tailwind.config.ts`
@@ -35,20 +35,20 @@
 
 ### 1.2 Couche de données
 
-- ✅ `prisma/schema.prisma` — Vote, WebAuthnCredential, WebAuthnChallenge
-- ✅ `types/index.ts` — types TypeScript partagés
-- ✅ `lib/db.ts` — singleton Prisma
-- ✅ `lib/measures.ts` — chargeur de données statiques
-- ✅ `lib/crypto.ts` — hash SHA-256 des votes
-- ✅ `data/measures.json` — migré depuis le prototype
-- ✅ `data/program.json` — migré depuis le prototype
-- ✅ `public/images/` — images de mesures et chapitres migrées
+- ✅ `prisma/schema.prisma` - Vote, WebAuthnCredential, WebAuthnChallenge
+- ✅ `types/index.ts` - types TypeScript partagés
+- ✅ `lib/db.ts` - singleton Prisma
+- ✅ `lib/measures.ts` - chargeur de données statiques
+- ✅ `lib/crypto.ts` - hash SHA-256 des votes
+- ✅ `data/measures.json` - migré depuis le prototype
+- ✅ `data/program.json` - migré depuis le prototype
+- ✅ `public/images/` - images de mesures et chapitres migrées
 
 ### 1.3 Identité et authentification
 
-- ✅ `lib/identity.client.ts` — localStorage + AES-GCM (navigateur uniquement)
-- ✅ `lib/identity.server.ts` — helpers @simplewebauthn/server
-- ✅ `context/IdentityContext.tsx` — état d'authentification global
+- ✅ `lib/identity.client.ts` - localStorage + AES-GCM (navigateur uniquement)
+- ✅ `lib/identity.server.ts` - helpers @simplewebauthn/server
+- ✅ `context/IdentityContext.tsx` - état d'authentification global
 - ✅ `app/api/auth/register/generate-options/route.ts`
 - ✅ `app/api/auth/register/verify/route.ts`
 - ✅ `app/api/auth/authenticate/generate-options/route.ts`
@@ -65,25 +65,25 @@
 ### 1.5 Shell et pages de l'application
 
 - ✅ `app/layout.tsx` + `app/globals.css`
-- ✅ `app/page.tsx` — accueil / onboarding / tableau de bord
+- ✅ `app/page.tsx` - accueil / onboarding / tableau de bord
 - ✅ `app/swipe/page.tsx`
 - ✅ `app/programme/page.tsx`
 - ✅ `app/resultats/page.tsx`
 
 ### 1.6 Composants
 
-- ✅ `components/AppShell.tsx` — en-tête + wrapper de navigation
-- ✅ `components/IdentityGate.tsx` — UI de création/déverrouillage de passkey
-- ✅ `components/SwipeDeck.tsx` — deck de swipe Framer Motion
-- ✅ `components/ActionBar.tsx` — boutons de vote
-- ✅ `components/ProgramReader.tsx` — navigateur de chapitres + détail
-- ✅ `components/ResultsDashboard.tsx` — statistiques + tableau triable
+- ✅ `components/AppShell.tsx` - en-tête + wrapper de navigation
+- ✅ `components/IdentityGate.tsx` - UI de création/déverrouillage de passkey
+- ✅ `components/SwipeDeck.tsx` - deck de swipe Framer Motion
+- ✅ `components/ActionBar.tsx` - boutons de vote
+- ✅ `components/ProgramReader.tsx` - navigateur de chapitres + détail
+- ✅ `components/ResultsDashboard.tsx` - statistiques + tableau triable
 
 ### 1.7 Validation (manuelle)
 
-- 🔵 Exécuter `npm install` — zéro erreur
-- 🔵 Exécuter `npm run db:generate` — client Prisma généré
-- 🔵 Exécuter `npm run db:push` — schéma appliqué à Neon
+- 🔵 Exécuter `npm install` - zéro erreur
+- 🔵 Exécuter `npm run db:generate` - client Prisma généré
+- 🔵 Exécuter `npm run db:push` - schéma appliqué à Neon
 - 🔵 `npm run dev` démarre sans erreur
 - 🔵 La création de passkey fonctionne sur `localhost` (Chrome/Safari)
 - 🔵 Le déverrouillage par passkey fonctionne sur le même appareil
@@ -94,7 +94,7 @@
 
 ---
 
-## Phase 2 — Finition UX
+## Phase 2 - Finition UX
 
 **Objectif :** UX de qualité production, accessibilité, PWA.
 **Démarrer quand :** Toutes les tâches de validation de la Phase 1 sont ✅
@@ -113,7 +113,7 @@
 
 ---
 
-## Phase 3 — Fonctionnalités communautaires
+## Phase 3 - Fonctionnalités communautaires
 
 **Objectif :** Espaces de discussion pour les mesures débattues + boîte à contributions.
 **Démarrer quand :** La Phase 2 est terminée et l'application est déployée.
@@ -126,7 +126,7 @@
 
 ---
 
-## Phase 4 — Déploiement en production
+## Phase 4 - Déploiement en production
 
 **Objectif :** En ligne, sécurisé, monitoré sur Vercel + Neon.
 **Démarrer quand :** Les fonctionnalités de la Phase 3 sont stables (ou passer la Phase 3 et déployer après la Phase 2).
@@ -137,13 +137,13 @@
 - 🔵 `WEBAUTHN_RP_ID` + `WEBAUTHN_ORIGIN` définis aux valeurs de production
 - 🔵 Suivi d'erreurs Sentry (`@sentry/nextjs`)
 - 🔵 Vercel Analytics activé
-- 🔵 Test de fumée : iOS Safari + Chrome Android — WebAuthn doit fonctionner
+- 🔵 Test de fumée : iOS Safari + Chrome Android - WebAuthn doit fonctionner
 - 🔵 Test de charge : 500 votants simultanés
 - 🔵 `prisma migrate deploy` exécuté pour la migration de production
 
 ---
 
-## Phase 5 — Couche de transparence Web3 ⏸️ REPORTÉE
+## Phase 5 - Couche de transparence Web3 ⏸️ REPORTÉE
 
 **Objectif :** Ancrer les agrégats de votes sur Polkadot Bulletin Chain pour une vérifiabilité publique.
 **Reporté jusqu'à :** Base d'utilisateurs solide établie après la Phase 4.
@@ -157,4 +157,4 @@
 
 ## Focus actuel
 
-**Phase 1.7 Validation** — configurer `.env.local`, exécuter `npm install && npm run db:generate && npm run db:push`, puis valider manuellement.
+**Phase 1.7 Validation** - configurer `.env.local`, exécuter `npm install && npm run db:generate && npm run db:push`, puis valider manuellement.

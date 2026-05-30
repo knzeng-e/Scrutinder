@@ -2,7 +2,7 @@
 
 > **Swipez le programme. Mesurez l'adhésion populaire.**
 
-Scrutinder est une application civique de type Tinder qui permet aux citoyens d'évaluer les 837 mesures du programme politique *L'Avenir en Commun* (LFI / Mélenchon 2027) — un swipe à la fois. Les comptages de votes sont agrégés en temps réel, chiffrés localement, et vérifiables par tous grâce à un hash d'intégrité public SHA-256.
+Scrutinder est une application civique de type Tinder qui permet aux citoyens d'évaluer les 837 mesures du programme politique *L'Avenir en Commun* (LFI / Mélenchon 2027) - un swipe à la fois. Les comptages de votes sont agrégés en temps réel, chiffrés localement, et vérifiables par tous grâce à un hash d'intégrité public SHA-256.
 
 Le nom est un mot-valise composé de **scrutin** et de **Tinder**.
 
@@ -10,17 +10,17 @@ Le nom est un mot-valise composé de **scrutin** et de **Tinder**.
 
 ## Fonctionnement
 
-Chaque session présente un tirage aléatoire de 8 mesures issues du programme complet. Swipez — ou appuyez sur un bouton — pour exprimer votre vote :
+Chaque session présente un tirage aléatoire de 8 mesures issues du programme complet. Swipez - ou appuyez sur un bouton - pour exprimer votre vote :
 
 | Geste | Direction | Signification |
 |---|---|---|
-| ♥ | Swipe droite | Pour — je soutiens cette mesure |
-| ✕ | Swipe gauche | Contre — je m'y oppose |
-| ★ | Swipe haut | Prioritaire — je soutiens ET c'est urgent |
-| … | Swipe bas | À discuter — j'ai besoin de plus d'informations |
-| ? | Bouton | Incompris — je ne comprends pas cette mesure |
+| ♥ | Swipe droite | Pour - je soutiens cette mesure |
+| ✕ | Swipe gauche | Contre - je m'y oppose |
+| ★ | Swipe haut | Prioritaire - je soutiens ET c'est urgent |
+| … | Swipe bas | À discuter - j'ai besoin de plus d'informations |
+| ? | Bouton | Incompris - je ne comprends pas cette mesure |
 
-Après 8 swipes, vous consultez les résultats agrégés de toutes les mesures sous forme de tableau triable, accompagnés d'un hash SHA-256 du décompte des votes — pour que chacun puisse vérifier que les chiffres n'ont pas été altérés.
+Après 8 swipes, vous consultez les résultats agrégés de toutes les mesures sous forme de tableau triable, accompagnés d'un hash SHA-256 du décompte des votes - pour que chacun puisse vérifier que les chiffres n'ont pas été altérés.
 
 ---
 
@@ -28,7 +28,7 @@ Après 8 swipes, vous consultez les résultats agrégés de toutes les mesures s
 
 - **Pas de compte, pas d'e-mail.** L'identité repose sur un passkey WebAuthn et une graine de 32 octets générée localement, stockée uniquement dans votre navigateur.
 - **Les votes sont chiffrés côté client** (AES-GCM, clé dérivée de votre graine) avant d'être envoyés au serveur. Le serveur stocke des enveloppes chiffrées, pas les choix en clair.
-- **Votre identifiant** (`sc_<hex32>`) est dérivé de `sha256(seed)` — il est impossible de le remonter jusqu'à vous.
+- **Votre identifiant** (`sc_<hex32>`) est dérivé de `sha256(seed)` - il est impossible de le remonter jusqu'à vous.
 - Le serveur reçoit : un identifiant de mesure, un libellé de choix, un pseudonyme de votant (optionnel) et une enveloppe chiffrée. Rien d'autre.
 
 ---
@@ -40,7 +40,7 @@ Après 8 swipes, vous consultez les résultats agrégés de toutes les mesures s
 | Framework | Next.js 15 (App Router) + TypeScript |
 | Style | Tailwind CSS |
 | Animations | Framer Motion (physique de swipe) |
-| Auth | WebAuthn passkeys — `@simplewebauthn/server` + `@simplewebauthn/browser` |
+| Auth | WebAuthn passkeys - `@simplewebauthn/server` + `@simplewebauthn/browser` |
 | Base de données | Prisma + PostgreSQL (Neon serverless) |
 | Déploiement | Vercel |
 
@@ -52,7 +52,7 @@ Après 8 swipes, vous consultez les résultats agrégés de toutes les mesures s
 
 - Node.js 18+
 - Une base de données PostgreSQL [Neon](https://neon.tech) (le niveau gratuit suffit)
-- Un navigateur compatible WebAuthn (Chrome, Safari, Firefox — nécessite `localhost` ou HTTPS)
+- Un navigateur compatible WebAuthn (Chrome, Safari, Firefox - nécessite `localhost` ou HTTPS)
 
 ### 1. Cloner et installer
 
@@ -65,16 +65,16 @@ npm install
 ### 2. Configurer l'environnement
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-Éditez `.env.local` :
+Éditez `.env` :
 
 ```bash
 # Chaîne de connexion Neon PostgreSQL
 DATABASE_URL=postgresql://user:password@host/scrutinder?sslmode=require&connect_timeout=10
 
-# Origine WebAuthn — doit correspondre exactement à ce qui apparaît dans la barre d'adresse du navigateur
+# Origine WebAuthn - doit correspondre exactement à ce qui apparaît dans la barre d'adresse du navigateur
 WEBAUTHN_RP_ID=localhost
 WEBAUTHN_ORIGIN=http://localhost:3000
 ```
@@ -83,7 +83,7 @@ WEBAUTHN_ORIGIN=http://localhost:3000
 
 ```bash
 npm run db:generate   # générer le client Prisma
-npm run db:push       # pousser le schéma vers Neon (dev uniquement — utiliser db:migrate en prod)
+npm run db:push       # pousser le schéma vers Neon (dev uniquement - utiliser db:migrate en prod)
 ```
 
 ### 4. Lancer
@@ -114,17 +114,17 @@ npm run db:studio     # Ouvrir Prisma Studio (navigateur visuel de DB)
 ```
 scrutinder/
 ├── app/
-│   ├── page.tsx              # Accueil — onboarding ou tableau de bord
+│   ├── page.tsx              # Accueil - onboarding ou tableau de bord
 │   ├── swipe/page.tsx        # Deck de swipe
 │   ├── programme/page.tsx    # Lecteur de programme (19 chapitres)
 │   ├── resultats/page.tsx    # Résultats en direct + hash d'intégrité
 │   └── api/                  # Gestionnaires de routes
 │       ├── auth/             # WebAuthn register + authenticate
-│       ├── measures/         # GET — retourne toutes les mesures
-│       ├── program/          # GET — retourne tous les chapitres
-│       ├── vote/             # POST — enregistre un vote
-│       ├── vote/undo/        # POST — annule le dernier vote
-│       └── results/          # GET — comptages agrégés + hash
+│       ├── measures/         # GET - retourne toutes les mesures
+│       ├── program/          # GET - retourne tous les chapitres
+│       ├── vote/             # POST - enregistre un vote
+│       ├── vote/undo/        # POST - annule le dernier vote
+│       └── results/          # GET - comptages agrégés + hash
 ├── components/               # Composants React UI
 ├── context/
 │   └── IdentityContext.tsx   # Machine à états d'authentification
@@ -186,13 +186,13 @@ model WebAuthnCredential {
 }
 
 model WebAuthnChallenge {
-  challenge     String    // unique, base64url — TTL 60s
+  challenge     String    // unique, base64url - TTL 60s
   userId        String?
   expiresAt     DateTime
 }
 ```
 
-> **Note :** Les valeurs de `measureId` sont stables — elles ne doivent jamais être renumérotées, car elles sont utilisées comme clés étrangères dans la table `Vote`.
+> **Note :** Les valeurs de `measureId` sont stables - elles ne doivent jamais être renumérotées, car elles sont utilisées comme clés étrangères dans la table `Vote`.
 
 ---
 
@@ -211,7 +211,7 @@ model WebAuthnChallenge {
    ```bash
    npx prisma migrate deploy
    ```
-4. Déployez — Vercel détecte Next.js automatiquement.
+4. Déployez - Vercel détecte Next.js automatiquement.
 
 > **WebAuthn nécessite HTTPS.** Les passkeys ne fonctionnent pas sur `http://` simple, sauf sur `localhost`.
 
@@ -221,11 +221,11 @@ model WebAuthnChallenge {
 
 | Phase | Statut | Objectif |
 |---|---|---|
-| 1 — Fondation | ✅ Terminée | Next.js + Prisma + WebAuthn + parité fonctionnelle avec le prototype |
-| 2 — Finition UX | 🔵 Suivante | Réglage Framer Motion, PWA, zones sécurisées mobiles, accessibilité |
-| 3 — Communauté | 🔵 Planifiée | Fils de discussion sur les mesures débattues, boîte à idées, vue admin |
-| 4 — Production | 🔵 Planifiée | Déploiement Vercel, domaine personnalisé, Sentry, tests de charge |
-| 5 — Web3 | ⏸ Reportée | Ancrage des votes sur Polkadot Bulletin Chain, page de vérification publique |
+| 1 - Fondation | ✅ Terminée | Next.js + Prisma + WebAuthn + parité fonctionnelle avec le prototype |
+| 2 - Finition UX | 🔵 Suivante | Réglage Framer Motion, PWA, zones sécurisées mobiles, accessibilité |
+| 3 - Communauté | 🔵 Planifiée | Fils de discussion sur les mesures débattues, boîte à idées, vue admin |
+| 4 - Production | 🔵 Planifiée | Déploiement Vercel, domaine personnalisé, Sentry, tests de charge |
+| 5 - Web3 | ⏸ Reportée | Ancrage des votes sur Polkadot Bulletin Chain, page de vérification publique |
 
 Voir [BACKLOG.md](BACKLOG.md) pour la liste détaillée des tâches.
 
