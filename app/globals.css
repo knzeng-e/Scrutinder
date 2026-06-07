@@ -3,30 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  /* Tokens sémantiques — thème sombre par défaut (:root) */
-  :root,
-  .dark {
-    --bg: 2 6 23;          /* slate-950 */
-    --surface: 15 23 42;   /* slate-900 */
-    --surface-2: 30 41 59; /* slate-800 */
-    --surface-3: 51 65 85; /* slate-700 */
-    --line: 30 41 59;      /* slate-800 */
-    --ink: 255 255 255;    /* white */
-    --muted: 148 163 184;  /* slate-400 */
-    --faint: 100 116 139;  /* slate-500 */
-    color-scheme: dark;
-  }
-
-  /* Thème clair */
-  .light {
-    --bg: 248 250 252;     /* slate-50 */
-    --surface: 255 255 255;/* white */
-    --surface-2: 241 245 249; /* slate-100 */
-    --surface-3: 226 232 240; /* slate-200 */
-    --line: 226 232 240;   /* slate-200 */
-    --ink: 15 23 42;       /* slate-900 */
-    --muted: 71 85 105;    /* slate-600 */
-    --faint: 100 116 139;  /* slate-500 */
+  :root {
     color-scheme: light;
   }
 
@@ -36,8 +13,15 @@
   }
 
   body {
-    overscroll-behavior: none;
+    background: #FFFCF4;
+    color: #0C0D0E;
+    overscroll-behavior-y: none;
+    -webkit-font-smoothing: antialiased;
   }
+
+  h1, h2, h3, h4 { margin: 0; }
+
+  ::selection { background: #4C0297; color: #fff; }
 
   .no-select {
     -webkit-user-select: none;
@@ -45,17 +29,103 @@
   }
 }
 
+@layer components {
+  /* ── Typographie affiche ─────────────────────────────────────────────── */
+  .display {
+    font-family: var(--font-display), 'Arial Narrow', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+  }
+  .eyebrow {
+    font-family: var(--font-cond), sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 11px;
+  }
+  .cond { font-family: var(--font-cond), sans-serif; }
+  .tag-num { font-family: var(--font-cond), sans-serif; font-weight: 700; }
+
+  /* ── Carte papier + ombres dures ─────────────────────────────────────── */
+  .pp-card {
+    background: #fff;
+    border: 1.5px solid #0C0D0E;
+    border-radius: 12px;
+  }
+
+  /* ── Chips / pastilles ───────────────────────────────────────────────── */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1.5px solid #0C0D0E;
+    border-radius: 999px;
+    padding: 5px 11px;
+    font-weight: 800;
+    font-size: 11px;
+    line-height: 1;
+    background: #fff;
+    color: #0C0D0E;
+  }
+  .chip.violet { background: #4C0297; color: #fff; }
+  .chip.red    { background: #D1271C; color: #fff; }
+  .chip.lav    { background: #E5CBFF; }
+  .chip.blue   { background: #BEE2FF; }
+  .chip.green  { background: #D4E9D6; color: #456A33; }
+  .chip.pink   { background: #FFD2CF; }
+
+  /* ── Boutons « pressés » ─────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-weight: 800;
+    border: 2px solid #0C0D0E;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 15px;
+    line-height: 1;
+    transition: transform .08s ease, box-shadow .08s ease;
+  }
+  .btn:active { transform: translate(2px, 2px); }
+  .btn-block  { width: 100%; }
+  .btn-sm     { padding: 10px 13px; font-size: 13px; border-radius: 10px; }
+  .btn-violet { background: #4C0297; color: #fff; box-shadow: 4px 4px 0 #0C0D0E; }
+  .btn-violet:active { box-shadow: 0 0 0 #0C0D0E; }
+  .btn-red    { background: #D1271C; color: #fff; box-shadow: 4px 4px 0 #0C0D0E; }
+  .btn-red:active { box-shadow: 0 0 0 #0C0D0E; }
+  .btn-ghost  { background: #fff; color: #0C0D0E; box-shadow: 4px 4px 0 #E5CBFF; }
+  .btn-ghost:active { box-shadow: 0 0 0 #E5CBFF; }
+
+  /* ── Barre de répartition des votes ──────────────────────────────────── */
+  .distbar {
+    display: flex;
+    height: 14px;
+    border: 1.5px solid #0C0D0E;
+    border-radius: 999px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .distbar > span { height: 100%; display: block; }
+}
+
 @layer utilities {
+  /* Padding horizontal écran + dégagement sous la barre d'onglets */
+  .pad     { padding-left: 18px; padding-right: 18px; }
+  .pb-nav  { padding-bottom: 108px; }
+
   .safe-top    { padding-top: env(safe-area-inset-top); }
   .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 
-  /* Bloc de squelette de chargement */
-  .skeleton {
-    @apply bg-surface2 rounded-xl animate-pulse;
-  }
+  .scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+
+  .skeleton { @apply bg-paper2 rounded-xl animate-pulse; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .animate-pop, .animate-slideUp { animation: none !important; }
 }

@@ -5,6 +5,25 @@ import type { Identity, EncryptedVoteEnvelope, VotePayload } from '@/types'
 const IDENTITY_KEY = 'scrutinder.identity.v1'
 const VOTE_KEY_PREFIX = 'scrutinder.vote-key.'
 
+// Réinitialisation ponctuelle du stockage local. Incrémenter `STATE_VERSION`
+// pour purger l'état local de tous les clients au prochain chargement
+// (identité, votes chiffrés locaux, mode invité, thème, état du prototype).
+const STATE_VERSION_KEY = 'scrutinder.state.version'
+const STATE_VERSION = '2'
+
+export function resetStaleLocalState(): void {
+  if (typeof window === 'undefined') return
+  try {
+    if (localStorage.getItem(STATE_VERSION_KEY) === STATE_VERSION) return
+    Object.keys(localStorage)
+      .filter((k) => k.startsWith('scrutinder.') || k === 'pp_state')
+      .forEach((k) => localStorage.removeItem(k))
+    localStorage.setItem(STATE_VERSION_KEY, STATE_VERSION)
+  } catch {
+    /* localStorage indisponible - on ignore */
+  }
+}
+
 const encoder = new TextEncoder()
 const decoder = new TextDecoder()
 

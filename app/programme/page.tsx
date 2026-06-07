@@ -1,6 +1,11 @@
-import { program } from '@/lib/measures'
 import { ProgramReader } from '@/components/ProgramReader'
+import { BottomNav } from '@/components/pp/BottomNav'
 
 export default function ProgrammePage() {
-  return <ProgramReader program={program} />
+  return (
+    <>
+      <ProgramReader />
+      <BottomNav />
+    </>
+  )
 }

@@ -2,6 +2,7 @@ import { prisma } from '@/lib/db'
 import { measures } from '@/lib/measures'
 import { computeVoteHash } from '@/lib/crypto'
 import { ResultsDashboard } from '@/components/ResultsDashboard'
+import { BottomNav } from '@/components/pp/BottomNav'
 import type { VoteCounts } from '@/types'
 
 export const dynamic = 'force-dynamic'
@@ -28,5 +29,10 @@ async function getResults() {
 
 export default async function ResultatsPage() {
   const results = await getResults()
-  return <ResultsDashboard measures={measures} results={results} />
+  return (
+    <>
+      <ResultsDashboard measures={measures} results={results} />
+      <BottomNav />
+    </>
+  )
 }

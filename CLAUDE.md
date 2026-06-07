@@ -48,20 +48,28 @@ npm run dev
 ```
 /                       accueil : onboarding si nouvel utilisateur, tableau de bord si authentifié
 /swipe                  deck de swipe (authentification requise)
-/programme              lecteur de programme - 18 chapitres (authentification requise)
+/programme              lecteur de programme - 19 chapitres (authentification requise)
 /resultats              résultats des votes en direct (public)
+/mesures/[id]           détail d'une mesure + fil de discussion + boîte à idées (public)
+/admin                  tableau de bord admin (gate mot de passe ADMIN_PASSWORD)
 
 /api/measures           GET  → tableau measures.json
 /api/program            GET  → tableau program.json
-/api/vote               POST → enregistre un vote (validé par Zod)
+/api/vote               POST → enregistre un vote (upsert voterId+measureId, validé par Zod)
 /api/vote/undo          POST → supprime le vote correspondant le plus récent
 /api/results            GET  → { votes: Record<id, counts>, hash: string }
+/api/measures/[id]/comments  GET → fil de discussion · POST → ajoute un message
+/api/contributions      GET (?measureId=) → idées · POST → soumet une idée
+/api/admin/data         POST (Bearer ADMIN_PASSWORD) → stats (débats, contributions)
+/api/admin/export       GET  (?key=ADMIN_PASSWORD) → export CSV des résultats agrégés
 
 /api/auth/register/generate-options   POST → options d'enregistrement WebAuthn
 /api/auth/register/verify             POST → vérifier + stocker le credential
 /api/auth/authenticate/generate-options POST → options d'authentification WebAuthn
 /api/auth/authenticate/verify           POST → vérifier + retourner le succès
 ```
+
+> **Espaces de discussion publics :** `Comment` et `Contribution` sont du texte _en clair_ (distinct des votes chiffrés). Pseudonyme + corps validés par Zod (1–40 / 1–2000 caractères). `voterId` facultatif relie au compte local.
 
 ### Machine à états d'authentification
 
@@ -108,7 +116,9 @@ La `seed` est la racine du chiffrement AES-GCM local. Les passkeys WebAuthn serv
 
 | Table | Rôle |
 |---|---|
-| `Vote` | Une ligne par vote : measureId, choice, voterId?, encryptedVote? |
+| `Vote` | Une ligne par vote : measureId, choice, voterId?, encryptedVote? (unique voterId+measureId) |
+| `Comment` | Message public d'un fil de discussion attaché à une mesure (texte en clair) |
+| `Contribution` | Idée / proposition citoyenne (measureId? null = générale, texte en clair) |
 | `WebAuthnCredential` | Clés publiques de passkeys stockées |
 | `WebAuthnChallenge` | Challenges d'enregistrement/authentification de courte durée (60s) |
 

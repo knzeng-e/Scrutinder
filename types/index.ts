@@ -61,3 +61,21 @@ export interface ResultsData {
 }
 
 export type AuthStatus = 'loading' | 'onboarding' | 'locked' | 'ready'
+
+export interface Comment {
+  id: string
+  measureId: number
+  voterId: string | null
+  pseudonym: string
+  body: string
+  createdAt: string
+}
+
+export interface Contribution {
+  id: string
+  measureId: number | null
+  voterId: string | null
+  pseudonym: string
+  body: string
+  createdAt: string
+}

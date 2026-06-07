@@ -1,11 +1,11 @@
 {
-  "name": "Scrutinder",
-  "short_name": "Scrutinder",
-  "description": "Swipez le programme, mesurez l'adhesion populaire.",
+  "name": "Parlement Populaire",
+  "short_name": "Parlement",
+  "description": "Votez les mesures. Mesurez l'adhésion populaire.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#FFFCF4",
+  "theme_color": "#4C0297",
   "lang": "fr",
   "dir": "ltr",
   "orientation": "portrait-primary",
@@ -34,14 +34,14 @@
   "screenshots": [],
   "shortcuts": [
     {
-      "name": "Swiper",
+      "name": "Voter",
       "url": "/swipe",
-      "description": "Evaluer les mesures du programme"
+      "description": "Voter les mesures du programme"
     },
     {
-      "name": "Resultats",
+      "name": "Résultats",
       "url": "/resultats",
-      "description": "Voir les resultats en direct"
+      "description": "Voir les résultats publics en direct"
     }
   ]
 }

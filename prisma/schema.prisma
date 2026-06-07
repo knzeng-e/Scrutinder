@@ -39,6 +39,32 @@ model WebAuthnCredential {
   @@index([userId])
 }
 
+// Fil de discussion public attaché à une mesure.
+// Texte en clair (espace de discussion public, distinct des votes chiffrés).
+model Comment {
+  id        String   @id @default(cuid())
+  measureId Int
+  voterId   String?  // sc_<hex32> — facultatif, pour relier au compte local
+  pseudonym String
+  body      String
+  createdAt DateTime @default(now())
+
+  @@index([measureId, createdAt])
+}
+
+// Idée / proposition citoyenne. measureId null = contribution générale.
+model Contribution {
+  id        String   @id @default(cuid())
+  measureId Int?
+  voterId   String?
+  pseudonym String
+  body      String
+  createdAt DateTime @default(now())
+
+  @@index([measureId])
+  @@index([createdAt])
+}
+
 // Short-lived challenge store (60s TTL). Cleaned up on each new request.
 model WebAuthnChallenge {
   id        String   @id @default(cuid())

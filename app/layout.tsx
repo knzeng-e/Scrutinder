@@ -1,31 +1,40 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Anton, Oswald, Hanken_Grotesk } from 'next/font/google'
 import { IdentityProvider } from '@/context/IdentityContext'
-import { ThemeProvider, themeInitScript } from '@/context/ThemeContext'
+import { VotesProvider } from '@/context/VotesContext'
 import { ToastProvider } from '@/components/ui/Toast'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+// Affiche / titres massifs
+const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-display' })
+// Sur-titres / labels condensés
+const oswald = Oswald({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-cond' })
+// Texte courant / UI
+const hanken = Hanken_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-sans',
+})
 
 export const metadata: Metadata = {
-  title: 'Scrutinder — Swipez le programme',
+  title: 'Parlement Populaire - Votez les mesures',
   description:
-    "Evaluez les mesures de L'Avenir en Commun en swipant. Sondage transparent, chiffre localement.",
+    "Découvrez, votez et débattez les mesures du programme L'Avenir en Commun. Votre voix reste locale et protégée.",
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'black-translucent',
-    title: 'Scrutinder',
+    statusBarStyle: 'default',
+    title: 'Parlement Populaire',
   },
   openGraph: {
-    title: 'Scrutinder',
-    description: "Swipez le programme politique, mesurez l'adhesion populaire.",
+    title: 'Parlement Populaire',
+    description: 'Votez les mesures. Mesurez l’adhésion populaire.',
     type: 'website',
   },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0f172a',
+  themeColor: '#FFFCF4',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
@@ -34,16 +43,17 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={inter.variable} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
-      <body className="bg-bg text-ink antialiased min-h-screen transition-colors">
-        <ThemeProvider>
-          <ToastProvider>
-            <IdentityProvider>{children}</IdentityProvider>
-          </ToastProvider>
-        </ThemeProvider>
+    <html
+      lang="fr"
+      className={`${anton.variable} ${oswald.variable} ${hanken.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="bg-paper text-ink font-sans antialiased min-h-screen">
+        <ToastProvider>
+          <IdentityProvider>
+            <VotesProvider>{children}</VotesProvider>
+          </IdentityProvider>
+        </ToastProvider>
       </body>
     </html>
   )

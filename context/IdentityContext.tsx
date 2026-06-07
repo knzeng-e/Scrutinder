@@ -8,6 +8,7 @@ import {
   deleteLocalProfile,
   getStoredIdentity,
   isWebAuthnSupported,
+  resetStaleLocalState,
   updateLocalPseudonym,
 } from '@/lib/identity.client'
 
@@ -23,11 +24,17 @@ interface IdentityContextValue {
   unlock: () => Promise<void>
   /** ré-enregistre un passkey pour l'identité locale existante (réutilise la graine) */
   recreatePasskey: () => Promise<void>
+  /** vrai quand l'utilisateur explore sans identité locale */
+  guest: boolean
+  /** entre dans l'app sans créer d'identité (votes anonymes) */
+  continueAsGuest: () => void
   savePseudonym: (pseudonym: string) => void
   logout: () => void
   deleteProfile: () => void
   clearError: () => void
 }
+
+const GUEST_KEY = 'scrutinder.guest'
 
 const IdentityContext = createContext<IdentityContextValue | null>(null)
 
@@ -37,16 +44,30 @@ export function IdentityProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState('')
   const [isBusy, setIsBusy] = useState(false)
   const [needsRecovery, setNeedsRecovery] = useState(false)
+  const [guest, setGuest] = useState(false)
   const isSupported = isWebAuthnSupported()
 
   useEffect(() => {
+    // Purge ponctuelle du stockage local (voir STATE_VERSION) avant toute lecture.
+    resetStaleLocalState()
     const stored = getStoredIdentity()
     if (!stored) {
-      setStatus('onboarding')
+      if (typeof window !== 'undefined' && localStorage.getItem(GUEST_KEY)) {
+        setGuest(true)
+        setStatus('ready')
+      } else {
+        setStatus('onboarding')
+      }
       return
     }
     setIdentity(stored)
     setStatus(stored.passkey?.credentialId ? 'locked' : 'onboarding')
+  }, [])
+
+  const continueAsGuest = useCallback(() => {
+    try { localStorage.setItem(GUEST_KEY, '1') } catch { /* ignore */ }
+    setGuest(true)
+    setStatus('ready')
   }, [])
 
   const createAccount = useCallback(async (pseudonym: string) => {
@@ -54,6 +75,8 @@ export function IdentityProvider({ children }: { children: React.ReactNode }) {
     setError('')
     try {
       const created = await createIdentityWithPasskey(identity, pseudonym)
+      try { localStorage.removeItem(GUEST_KEY) } catch { /* ignore */ }
+      setGuest(false)
       setIdentity(created)
       setStatus('ready')
     } catch (e) {
@@ -122,7 +145,7 @@ export function IdentityProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <IdentityContext.Provider
-      value={{ identity, status, error, isBusy, isSupported, needsRecovery, createAccount, unlock, recreatePasskey, savePseudonym, logout, deleteProfile, clearError }}
+      value={{ identity, status, error, isBusy, isSupported, needsRecovery, guest, continueAsGuest, createAccount, unlock, recreatePasskey, savePseudonym, logout, deleteProfile, clearError }}
     >
       {children}
     </IdentityContext.Provider>
